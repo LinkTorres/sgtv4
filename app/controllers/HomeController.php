@@ -76,6 +76,40 @@ class HomeController extends BaseController {
 		
 	}
 
+
+	public function actualizarProfesores()
+	{
+		$cedula = e(Input::get('ced')); 
+		$nombre = e(Input::get('nombre')); 
+		$ap = e(Input::get('ap'));
+		$am = e(Input::get('am'));
+		$genero = e(Input::get('genero'));
+		$cargo = e(Input::get('cargo'));
+		$mail = e(Input::get('mail'));
+
+		$idUser = DB::table('Profesor')->where('Cedula',$cedula)->pluck('Usuario_id_Usuario');
+		
+		
+
+		
+			DB::table('Usuario')
+            ->where('id_Usuario',$idUser)
+            ->update(array('Nombre' => $nombre, 'ApellidoP' => $ap, 'ApellidoM' => $am, 'Genero' => $genero,'Correo' => $mail,'Rol' => 'Profesor'));
+		
+
+			DB::table('Profesor')
+            ->where('Cedula',$cedula)
+            ->update(array('Cargo' => $cargo));
+		
+	}
+
+
+
+
+
+
+
+
 	public function altatt()
 	{
 		return View::make('GestionarTT');

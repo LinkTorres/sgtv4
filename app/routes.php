@@ -15,6 +15,7 @@ Route::group(array('before' => 'auth'), function()
 
 	Route::get('gestionProfesores', 'HomeController@altaProfesores');
 	Route::post('gestionProfesores', 'HomeController@postaltaProfesores');
+	Route::post('actualizarProfesores', 'HomeController@actualizarProfesores');
 
 	Route::get('gestionartt', 'HomeController@altatt');
 	Route::post('gestionartt', 'HomeController@postAltatt');

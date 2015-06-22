@@ -523,17 +523,73 @@
 
 		<div class="md-modal md-fade-in-scale-up" id="md-fade-in-scale-up">
 			<div class="md-content">
-				<h3>Modal Dialog</h3>
+				<h3>Editar Profesor</h3>
 				<div>
-					<p>This is a modal window. You can do the following things with it:</p>
+					<p>Puedes editar el profesor seleccionado</p>
 					<ul>
 						<li><strong>Read:</strong> modal windows will probably tell you something important so don't forget to read what they say.</li>
 						<li><strong>Look:</strong> a modal window enjoys a certain kind of attention; just look at it and appreciate its presence.</li>
 						<li><strong>Close:</strong> click on the button below to close the modal.</li>
 					</ul>
 					<p>
+
+					{{ Form::open(array('url' => '/gestionProfesores')); }}
+														<div class="form-group">
+															<label for="form-field-1"> Cédula </label>
+															{{ Form::text('cedula', '', array('class' => 'form-control','placeholder' => 'Cédula')); }}
+														</div>
+														<div class="form-group">
+															<div class="row">
+															<label class="col-md-12" for="form-field-8">Nombre</label>
+															
+															<span class="input-icon col-md-4">
+																	{{ Form::text('nombre', '', array('class' => 'form-control ','placeholder' => 'Nombre')); }}
+																	
+																</span>
+
+																<span class="input-icon input-icon-right col-md-4">
+																	{{ Form::text('ap', '', array('class' => 'form-control col-md-4','placeholder' => 'Apellido Paterno')); }}
+																</span>
+																<span class="input-icon input-icon-right col-md-4">
+																	{{ Form::text('am', '', array('class' => 'form-control col-md-4','placeholder' => 'Apellido Materno')); }}
+																
+																</span>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<div class="row">
+															<label class="col-md-12" for="form-field-1">Género</label>
+															<div class="col-md-4">
+															{{ Form::select('genero', array('M' => 'Masculino', 'F' => 'Femenino'),null, array('class' => 'form-control col-md-4')); }}
+															</div>
+															</div>
+														</div>
+														
+														<div class="form-group">
+															<div class="row">
+															<label class="col-md-12" for="form-field-1">Cargo</label>
+															<div class="col-md-4">
+															{{ Form::select('cargo', array('Otro' => 'Otro', 'Director' => 'Director', 'Subdirector' => 'Subdirector'),null, array('class' => 'form-control')); }}
+															</div>														
+														</div>
+
+														<div class="form-group">
+															<label  for="form-field-1"> E-mail </label>
+														{{ Form::text('mail', '', array('placeholder' => 'E-mail','class' => 'form-control')); }}
+                                                            
+															
+														</div>
+
+														<div class="clearfix form-actions ">
+															
+																	{{ Form::submit('Registrar', array('class' => 'btn btn-info')); }}
+															
+														</div>
+													{{ Form::close() }}
 					<button class="btn btn-danger md-close">Close me!</button>
 					<button class="btn btn-success md-close">Some button</button>
+
 					</p>
 				</div>
 			</div><!-- End div .md-content -->

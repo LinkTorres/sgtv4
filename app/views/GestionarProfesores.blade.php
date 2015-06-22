@@ -564,6 +564,21 @@
 															</div>
 															</div>
 														</div>
+
+														<div class="form-group">
+															<div class="row">
+															<label class="col-md-12" for="form-field-1">Cargo</label>
+															<div class="col-md-4">
+															{{ Form::select('cargo', array('Otro' => 'Otro', 'Director' => 'Director', 'Subdirector' => 'Subdirector'),null, array('class' => 'form-control')); }}
+															</div>														
+														</div>
+
+														<div class="form-group">
+															<label  for="form-field-1"> E-mail </label>
+														{{ Form::text('mail', '', array('placeholder' => 'E-mail','class' => 'form-control')); }}
+                                                            
+															
+														</div>
 														
 													{{ Form::close() }}
 					<button class="btn btn-danger md-close">Close me!</button>

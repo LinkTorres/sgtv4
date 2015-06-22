@@ -521,7 +521,7 @@
 			</div>
 		</div><!-- End .md-modal -->
 
-		<div class="md-modal md-fade-in-scale-up" id="editarProfesor">
+		<div class="md-modal md-effect-16" id="editarProfesor">
 			<div class="md-content">
 				{{ Form::open(array('url' => '/gestionProfesores')); }}
 														<div class="form-group">

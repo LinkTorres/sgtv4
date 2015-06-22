@@ -463,7 +463,7 @@
                                             <td>{{ $item->Genero }}</td>
                                             <td>
                                             	<div class="btn-group btn-group-xs">
-												<a data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-edit"></i></a>
+												<a class="md-trigger btn btn-default" data-modal="logout-modal-alt" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-edit"></i></a>
 												</div></td>
                                         </tr> 
 									         
@@ -520,6 +520,26 @@
 				</div>
 			</div>
 		</div><!-- End .md-modal -->
+
+		<div class="md-modal md-fade-in-scale-up" id="md-fade-in-scale-up">
+			<div class="md-content">
+				<h3>Modal Dialog</h3>
+				<div>
+					<p>This is a modal window. You can do the following things with it:</p>
+					<ul>
+						<li><strong>Read:</strong> modal windows will probably tell you something important so don't forget to read what they say.</li>
+						<li><strong>Look:</strong> a modal window enjoys a certain kind of attention; just look at it and appreciate its presence.</li>
+						<li><strong>Close:</strong> click on the button below to close the modal.</li>
+					</ul>
+					<p>
+					<button class="btn btn-danger md-close">Close me!</button>
+					<button class="btn btn-success md-close">Some button</button>
+					</p>
+				</div>
+			</div><!-- End div .md-content -->
+		</div><!-- End div .md-modal .md-fade-in-scale-up -->
+
+
 		
 		<!-- Modal Task Progress -->	
 		<div class="md-modal md-slide-stick-top" id="task-progress">

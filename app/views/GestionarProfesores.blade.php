@@ -533,7 +533,7 @@
 					</ul>
 					<p>
 
-					{{ Form::open(array('url' => '/gestionProfesores')); }}
+
 														<div class="form-group">
 															<label for="form-field-1"> Cédula </label>
 															{{ Form::text('cedula', '', array('class' => 'form-control','placeholder' => 'Cédula')); }}
@@ -586,7 +586,7 @@
 																	{{ Form::submit('Registrar', array('class' => 'btn btn-info')); }}
 															
 														</div>
-													{{ Form::close() }}
+													
 					<button class="btn btn-danger md-close">Close me!</button>
 					<button class="btn btn-success md-close">Some button</button>
 

@@ -538,6 +538,24 @@
 															<label for="form-field-1"> Cédula </label>
 															{{ Form::text('cedula', '', array('class' => 'form-control','placeholder' => 'Cédula')); }}
 														</div>
+														<div class="form-group">
+															<div class="row">
+															<label class="col-md-12" for="form-field-8">Nombre</label>
+															
+															<span class="input-icon col-md-4">
+																	{{ Form::text('nombre', '', array('class' => 'form-control ','placeholder' => 'Nombre')); }}
+																	
+																</span>
+
+																<span class="input-icon input-icon-right col-md-4">
+																	{{ Form::text('ap', '', array('class' => 'form-control col-md-4','placeholder' => 'Apellido Paterno')); }}
+																</span>
+																<span class="input-icon input-icon-right col-md-4">
+																	{{ Form::text('am', '', array('class' => 'form-control col-md-4','placeholder' => 'Apellido Materno')); }}
+																
+																</span>
+															</div>
+														</div>
 														
 													{{ Form::close() }}
 					<button class="btn btn-danger md-close">Close me!</button>

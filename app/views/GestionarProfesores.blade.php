@@ -556,6 +556,14 @@
 																</span>
 															</div>
 														</div>
+														<div class="form-group">
+															<div class="row">
+															<label class="col-md-12" for="form-field-1">Género</label>
+															<div class="col-md-4">
+															{{ Form::select('genero', array('M' => 'Masculino', 'F' => 'Femenino'),null, array('class' => 'form-control col-md-4')); }}
+															</div>
+															</div>
+														</div>
 														
 													{{ Form::close() }}
 					<button class="btn btn-danger md-close">Close me!</button>

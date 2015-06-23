@@ -76,7 +76,7 @@
 							Bienvenido,
 							<h4 class="media-heading"><strong>CATT</strong></h4>
 							<a href="user-profile.html">Editar</a>
-							<a class="md-trigger" data-modal="logout-modal-alt">Salir</a>
+							<a href="./logout" class="md-trigger">Salir</a>
 						</div><!-- End div .media-body -->
 					</div><!-- End div .media -->
 					

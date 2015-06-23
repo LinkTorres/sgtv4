@@ -33,6 +33,9 @@ class HomeController extends BaseController {
             ->get();
         Log::info("Logging an array: " . print_r($Profes, true));
 
+
+
+
 		return View::make('GestionarProfesores',$Profes)
 		->with('Profes',$Profes);
 	}
@@ -70,9 +73,20 @@ class HomeController extends BaseController {
 			{
 				$id = DB::table('Usuario')->insertGetId(array('Nombre' => $nombre, 'ApellidoP' => $ap, 'ApellidoM' => $am, 'Genero' => $genero,'Correo' => $mail,'Rol' => 'Profesor'));
 				DB::table('Profesor')->insert(array('Cedula' => $cedula, 'Cargo' => $cargo, 'Usuario_id_Usuario' => $id));
-				return Redirect::to('login');
+				$correcto = "El profesor ha sido agregado correctamente";
+		$data='';
+				Mail::send('emails.auth.reminder', $data, function($message)
+{
+  $message->to('h_cosmo@hotmail.com', 'Philip Brown')
+          ->subject('Welcome to Cribbb!');
+});
+
+
+           return Redirect::to('gestionProfesores')
+					->with('correcto',$correcto);
 			}
 		}
+
 		
 	}
 
@@ -100,6 +114,13 @@ class HomeController extends BaseController {
 			DB::table('Profesor')
             ->where('Cedula',$cedula)
             ->update(array('Cargo' => $cargo));
+
+            $correcto = "El profesor ha sido actualizado correctamente";
+
+           return Redirect::to('gestionProfesores')
+					->with('correcto',$correcto);
+				    
+
 		
 	}
 

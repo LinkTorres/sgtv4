@@ -81,7 +81,7 @@
 							Welcome back,
 							<h4 class="media-heading"><strong>Mas Bro</strong></h4>
 							<a href="user-profile.html">Edit</a>
-							<a class="md-trigger" data-modal="logout-modal-alt">Logout</a>
+							<a href="./logout" class="md-trigger">Logout</a>
 						</div><!-- End div .media-body -->
 					</div><!-- End div .media -->
 					
@@ -347,13 +347,15 @@
 				
 				<!-- Page header -->
 				<div class="page-heading">
-					<h1>Dashboard <small>your first page</small></h1>
+					<h1>Gestionar Profesores <small>your first page</small></h1>
 				</div>
 				<!-- End page header -->
 				
 				
 				<!-- Begin info box -->
-				
+				@if(Session::has('correcto'))
+                                            <div class="alert alert-success">{{ Session::get('correcto') }}</div>
+                                            @endif
 				<div class="box-info">
 						<h2><strong>Tu ptm</strong> Form</h2>
 							<!-- Additional button -->
@@ -372,22 +374,22 @@
 													{{ Form::open(array('url' => '/gestionProfesores')); }}
 														<div class="form-group">
 															<label for="form-field-1"> Cédula </label>
-															{{ Form::text('cedula', '', array('class' => 'form-control','placeholder' => 'Cédula')); }}
+															{{ Form::text('cedula', '', array('class' => 'form-control','placeholder' => 'Cédula','required')); }}
 														</div>
 														<div class="form-group">
 															<div class="row">
 															<label class="col-md-12" for="form-field-8">Nombre</label>
 															
 															<span class="input-icon col-md-4">
-																	{{ Form::text('nombre', '', array('class' => 'form-control ','placeholder' => 'Nombre')); }}
+																	{{ Form::text('nombre', '', array('class' => 'form-control ','placeholder' => 'Nombre','required')); }}
 																	
 																</span>
 
 																<span class="input-icon input-icon-right col-md-4">
-																	{{ Form::text('ap', '', array('class' => 'form-control col-md-4','placeholder' => 'Apellido Paterno')); }}
+																	{{ Form::text('ap', '', array('class' => 'form-control col-md-4','placeholder' => 'Apellido Paterno','required')); }}
 																</span>
 																<span class="input-icon input-icon-right col-md-4">
-																	{{ Form::text('am', '', array('class' => 'form-control col-md-4','placeholder' => 'Apellido Materno')); }}
+																	{{ Form::text('am', '', array('class' => 'form-control col-md-4','placeholder' => 'Apellido Materno','required')); }}
 																
 																</span>
 															</div>
@@ -397,7 +399,7 @@
 															<div class="row">
 															<label class="col-md-12" for="form-field-1">Género</label>
 															<div class="col-md-4">
-															{{ Form::select('genero', array('M' => 'Masculino', 'F' => 'Femenino'),null, array('class' => 'form-control col-md-4')); }}
+															{{ Form::select('genero', array('M' => 'Masculino', 'F' => 'Femenino'),null, array('class' => 'form-control col-md-4','required')); }}
 															</div>
 															</div>
 														</div>
@@ -412,7 +414,7 @@
 
 														<div class="form-group">
 															<label  for="form-field-1"> E-mail </label>
-														{{ Form::text('mail', '', array('placeholder' => 'E-mail','class' => 'form-control')); }}
+														{{ Form::email('mail', '', array('placeholder' => 'E-mail','class' => 'form-control', 'required')); }}
                                                             
 															
 														</div>
@@ -437,7 +439,7 @@
 							</div>
 							<!-- Basic form body -->
 							<!-- End div #basic-form -->
-
+							
 							<div class="table-responsive">
 						<table id="test" data-sortable class="table">
 							<thead>
@@ -524,7 +526,7 @@
 			</div>
 		</div><!-- End .md-modal -->
 		@foreach($Profes as $item)
-		<div class="md-modal md-fade-in-scale-up" id="a2012630443">
+		<div class="md-modal md-fade-in-scale-up" id="a{{ $item->Cedula }}">
 			<div class="md-content">
 				<h3>Editar Profesor</h3>
 				<div>
@@ -576,10 +578,11 @@
 														{{ Form::text('mail',$item->Correo, array('placeholder' => 'E-mail','class' => 'form-control')); }}
                                                       	</div>
 														
-													{{ Form::close() }}
-					<button class="btn btn-danger md-close">Cancelar</button>
+													
+					{{ Form::reset('Cancelar', ['class' => 'btn btn-danger md-close']) }}
+					
 					{{ Form::submit('Actualizar', array('class' => 'btn btn-success')); }}
-
+{{ Form::close() }}
 					</p>
 				</div>
 			</div><!-- End div .md-content -->

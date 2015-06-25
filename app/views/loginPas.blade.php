@@ -17,9 +17,8 @@
     {{ HTML::style('css/style-responsive.css'); }}
 
     <!-- VENDOR -->
-    {{ HTML::style('css/animate.css'); }}
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+    {{ HTML::style('css/animate.css'); }}    
     {{ HTML::style('third/weather-icon/css/weather-icons.min.css'); }}
     {{ HTML::style('third/morris/morris.css'); }}
     {{ HTML::style('third/nifty-modal/css/component.css'); }}
@@ -55,24 +54,23 @@
         
         <!-- Begin Login Page -->
         <div class="full-content-center animated fadeInDownBig">
-            <a href="#fakelink"><img src="images/logotipo.png" class="logo-login img-circle" alt="Logo"></a>
+            <a href="#fakelink"><img src="assets/img/logo-login.png" class="logo-login img-circle" alt="Logo"></a>
             <div class="login-wrap">
                 <div class="box-info">
-                <h2 class="text-center"><strong>Login</strong>  CATT</h2>
+                <h2 class="text-center"><strong>Login</strong>  Pasante</h2>
                     {{-- Preguntamos si hay algún mensaje de error y si hay lo mostramos  --}}
-                                            @if(Session::has('mensaje_error'))
-                                            <div class="alert alert-danger">{{ Session::get('mensaje_error') }}</div>
-                                            @endif
-                    {{ Form::open(array('url' => '/login')) }}
+                         @if(Session::has('mensaje_error'))
+                         <div class="alert alert-danger">{{ Session::get('mensaje_error') }}</div>
+                         @endif
+                        {{ Form::open(array('url' => '/loginPas')) }}
                         <div class="form-group login-input">
                         <i class="fa fa-sign-in overlay"></i>
-                        {{ Form::text('username', Input::old('username'), array('class' => 'form-control text-input','placeholder' => 'Nombre de usuario')); }}
+                        {{ Form::text('username', Input::old('username'), array('class' => 'form-control text-input','placeholder' => 'Número de Boleta')); }}
                                                             
                         </div>
                         <div class="form-group login-input">
                         <i class="fa fa-key overlay"></i>
-                        {{ Form::password('password', array('class' => 'form-control text-input','placeholder' => 'Contraseña')); }}
-                                                        
+                        {{ Form::password('password', array('class' => 'form-control text-input','placeholder' => 'Contraseña')); }}                          
                         </div>
                         <div class="checkbox">
                         <label class="inline">
@@ -82,14 +80,20 @@
                         </div>
                         
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                             {{ Form::submit('Ingresar', array('class' => 'btn btn-success btn-block')) }}
                             </div>
+                        
+                            <div class="col-sm-6">
+                            {{ Form::submit('Registrarse', array('class' => 'btn btn-info btn-block')) }}
+                            </div>
                         </div>
-
+                       
                    {{ Form::close() }}
+                    
                 </div>
-                <p class="text-center"><a href="./olvidopassword"><i class="fa fa-lock"></i> ¿Olvidaste tu password?</a></p>
+
+                <p class="text-center"><a href="forgot-password.html"><i class="fa fa-lock"></i> ¿Olvidaste tu password?</a></p>
             </div>
         </div>
         <!-- End Login Page -->
@@ -104,8 +108,10 @@
     -->
     <!-- Basic Javascripts (Jquery and bootstrap) -->
     {{ HTML::script('js/jquery.js'); }}
+
     {{ HTML::script('js/bootstrap.min.js'); }}
- 
+
+    
     <!-- VENDOR -->
     
     <!-- Slimscroll js -->
@@ -120,44 +126,34 @@
     {{ HTML::script('third/nifty-modal/js/classie.js'); }}
     {{ HTML::script('third/nifty-modal/js/modalEffects.js'); }}
 
-    
     <!-- Sortable js -->
     {{ HTML::script('third/sortable/sortable.min.js'); }}
-
-    
+ 
     <!-- Bootstrao selectpicker js -->
     {{ HTML::script('third/select/bootstrap-select.min.js'); }}
-
-    
+ 
     <!-- Summernote js -->
     {{ HTML::script('third/summernote/summernote.js'); }}
-
-    
+  
     <!-- Magnific popup js -->
     {{ HTML::script('third/magnific-popup/jquery.magnific-popup.min.js'); }}
- 
-    
+   
     <!-- Bootstrap file input js -->
     {{ HTML::script('third/input/bootstrap.file-input.js'); }}
-
-    
+ 
     <!-- Bootstrao datepicker js -->
     {{ HTML::script('third/datepicker/js/bootstrap-datepicker.js'); }}
-
-    
+  
     <!-- Icheck js -->
     {{ HTML::script('third/icheck/icheck.min.js'); }}
-
-    
+ 
     <!-- Form wizard js -->
     {{ HTML::script('third/wizard/jquery.snippet.min.js'); }}
     {{ HTML::script('third/wizard/jquery.easyWizard.js'); }}
     {{ HTML::script('third/wizard/scripts.js'); }}
-
-    
+  
     <!-- LANCENG TEMPLATE JAVASCRIPT -->
     {{ HTML::script('js/lanceng.js'); }}
-
 
     </body>
 </html>

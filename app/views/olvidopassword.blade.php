@@ -51,50 +51,24 @@
     
     
     <!-- BEGIN PAGE -->
-    <div class="container">
-        
-        <!-- Begin Login Page -->
-        <div class="full-content-center animated fadeInDownBig">
-            <a href="#fakelink"><img src="images/logotipo.png" class="logo-login img-circle" alt="Logo"></a>
+    <div class="full-content-center animated fadeInDownBig">
+            <a href="#fakelink"><img src="assets/img/logo-login.png" class="logo-login img-circle" alt="Logo"></a>
             <div class="login-wrap">
                 <div class="box-info">
-                <h2 class="text-center"><strong>Login</strong>  CATT</h2>
-                    {{-- Preguntamos si hay algún mensaje de error y si hay lo mostramos  --}}
-                                            @if(Session::has('mensaje_error'))
-                                            <div class="alert alert-danger">{{ Session::get('mensaje_error') }}</div>
-                                            @endif
-                    {{ Form::open(array('url' => '/login')) }}
+                <h2 class="text-center"><strong>¿Olvidaste tu password? </strong></h2>
+                
+                    <form role="form">
                         <div class="form-group login-input">
-                        <i class="fa fa-sign-in overlay"></i>
-                        {{ Form::text('username', Input::old('username'), array('class' => 'form-control text-input','placeholder' => 'Nombre de usuario')); }}
-                                                            
-                        </div>
-                        <div class="form-group login-input">
-                        <i class="fa fa-key overlay"></i>
-                        {{ Form::password('password', array('class' => 'form-control text-input','placeholder' => 'Contraseña')); }}
-                                                        
-                        </div>
-                        <div class="checkbox">
-                        <label class="inline">
-                            {{ Form::checkbox('rememberme', true) }}
-                            <span class="lbl"> Recordarme</span>
-                        </label>
+                        <i class="fa fa-user overlay"></i>
+                        <input type="email" class="form-control text-input" placeholder="Tu correo eletronico">
                         </div>
                         
-                        <div class="row">
-                            <div class="col-sm-12">
-                            {{ Form::submit('Ingresar', array('class' => 'btn btn-success btn-block')) }}
-                            </div>
-                        </div>
-
-                   {{ Form::close() }}
+                        <button type="button" class="btn btn-success btn-block"><i class="fa fa-lock"></i> Enviar Password</button>
+                    </form>
                 </div>
-                <p class="text-center"><a href="./olvidopassword"><i class="fa fa-lock"></i> ¿Olvidaste tu password?</a></p>
+                <p class="text-center"><a href="./login"><i class="fa fa-sign-in"></i> Volver al login</a></p>
             </div>
         </div>
-        <!-- End Login Page -->
-        
-    </div><!-- End div .container -->
     <!-- END PAGE -->
 
     <!--

@@ -52,7 +52,7 @@
 		<!-- Your logo goes here -->
 		<div class="logo-brand header sidebar rows">
 			<div class="logo">
-				<h1><a href="#fakelink"><img src="assets/img/logo.png" alt="Logo"> SGT ADMIN</a></h1>
+				<h1><a href="#fakelink"><img src="assets/img/logo.png" alt="Logo"> SGT </a></h1>
 			</div>
 		</div><!-- End div .header .sidebar .rows -->
 	
@@ -68,11 +68,12 @@
 					<!-- User Session -->
 					<div class="media">
 						<a class="pull-left" href="#fakelink">
-							{{ HTML::image('images/SGTlogo.jpg'); }}
-							</a>
+							{{ HTML::image('images/SGTlogo'); }}
+							<img class="media-object img-circle" src="assets/img/avatar/masarie.jpg" alt="Avatar">
+						</a>
 						<div class="media-body">
 							Bienvenido,
-							<h4 class="media-heading"><strong>CATT</strong></h4>
+							<h4 class="media-heading"><strong>Pasante</strong></h4>
 						</div><!-- End div .media-body -->
 					</div><!-- End div .media -->
 					
@@ -83,20 +84,10 @@
 					<!-- Sidebar menu -->				
 					<div id="sidebar-menu">
 						<ul>
-							<li><a href="./"><i class="fa fa-home"></i> Dashboard</a></li>
-							<li class="active"><a href="./gestionProfesores"><i class="fa fa-users"></i> Gestionar Profesores</a></li>
-							<li><a href="./gestionartt"><i class="fa fa-university"></i> Gestionar TT</a></li>
-							<li><a href="./registrott"><i class="fa fa-list"></i> Registros de TT</a></li>
-							<li><a href="./gestionPasantes"><i class="fa fa-graduation-cap"></i>Pasantes</a></li>
-							<li><a href="#"><i class="fa fa-angle-double-down i-right"></i><i class="fa fa-calendar"></i> Gestionar Protestas</a>
-								<ul>
-									<li><a href="./gestionProtestas"><i class="fa fa-angle-right"></i><i class=""></i> Registrar Protestas</a></li>
-									<li><a href="./asignarProtesta"><i class="fa fa-angle-right"></i><i class=""></i> Asignar Fechas de Protestas</a></li>
-								</ul>
-							</li>
-							<li><a href="./generarActa"><i class="fa fa-file-o"></i> Generar Actas</a></li>
-							<li><a href="./generarOficio"><i class="fa fa-file-text-o	"></i> Generar Oficios</a></li>
-							<li><a href="./estadisticas"><i class="fa fa-bar-chart"></i>Estadísticas</a></li>
+							<li><a href="index.html"><i class="fa fa-home"></i> Dashboard</a></li>
+							<li><a href="./gestionProfesores"><i class="fa fa-users"></i> Ver Jurado</a></li>
+							<li><a href="./gestionartt"><i class="fa fa-university"></i> Ver Documentación</a></li>
+							<li><a href="#./RegistrosTT"><i class="fa fa-list"></i> Imprimir Solicitud</a></li>
 						</ul>
 						<div class="clear"></div>
 					</div><!-- End div #sidebar-menu -->
@@ -231,14 +222,14 @@
 							
 								<!-- Dropdown User session -->
 								<li class="dropdown">
-									<a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">Admin, <strong>CATT</strong> <i class="fa fa-chevron-down i-xs"></i></a>
+									<a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">Pasante, <strong>Link</strong> <i class="fa fa-chevron-down i-xs"></i></a>
 									<ul class="dropdown-menu animated half flipInX">
 										<li><a href="#fakelink">Mi Perfil</a></li>
 										<li><a href="#fakelink">Cambiar Password</a></li>
 										<li><a href="./BloquearPantalla"><i class="fa fa-lock"></i> Bloquear Pantalla</a></li>
 										<li class="divider"></li>
 										<li><a href="#fakelink"><i class="fa fa-cog"></i> Configuración</a></li>
-										<li><a href="./logout" data-modal="logout-modal"> Cerrar Sesión</a></li>
+										<li><a href="./logout" class="md-trigger" data-modal="logout-modal"> Cerrar Sesión</a></li>
 									</ul>
 								</li>
 								<!-- End Dropdown User session -->
@@ -260,134 +251,21 @@
 				
 				<!-- Page header -->
 				<div class="page-heading">
-					<h1><i class="fa fa-users"></i> Gestionar Profesores</h1>
+					<h1>Inicio <small> Sistema de Gestion de la Titulación</small></h1>
 				</div>
 				<!-- End page header -->
 				
 				
-				<!-- Begin info box -->
-				@if(Session::has('correcto'))
-                <div class="alert alert-success">{{ Session::get('correcto') }}</div>
-                    @endif
-				<div class="box-info">
-					<h2><i class="fa fa-user-plus"></i><strong> Agregar Profesores</strong> Form</h2>
-							<!-- Additional button -->
-							<div class="additional-btn">
-								<a class="additional-icon"  data-toggle="collapse" data-target="#basic-form"><i class="fa fa-chevron-down"></i></a>
-							</div>
-
-							<!-- Basic form body -->
-							<div id="basic-form" class="collapse in">
-								
-								{{-- Preguntamos si hay algún mensaje de error y si hay lo mostramos  --}}
-                             	@if(Session::has('error'))
-                            	<div class="alert alert-danger">{{ Session::get('error') }}</div>
-                                      @endif
-									{{ Form::open(array('url' => '/gestionProfesores')); }}
-								<div class="form-group">
-									<label for="form-field-1"> Cédula </label>
-									{{ Form::text('cedula', '', array('class' => 'form-control','placeholder' => 'Cédula','required')); }}
-								</div>
-								<div class="form-group">
-									<div class="row">
-									<label class="col-md-12" for="form-field-8">Nombre</label>
-															
-									<span class="input-icon col-md-4">
-										{{ Form::text('nombre', '', array('class' => 'form-control ','placeholder' => 'Nombre','required')); }}
-									</span>
-
-									<span class="input-icon input-icon-right col-md-4">
-										{{ Form::text('ap', '', array('class' => 'form-control col-md-4','placeholder' => 'Apellido Paterno','required')); }}
-									</span>
-									<span class="input-icon input-icon-right col-md-4">
-										{{ Form::text('am', '', array('class' => 'form-control col-md-4','placeholder' => 'Apellido Materno','required')); }}					
-									</span>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<div class="row">
-									<label class="col-md-12" for="form-field-1">Género</label>
-									<div class="col-md-4">
-									{{ Form::select('genero', array('M' => 'Masculino', 'F' => 'Femenino'),null, array('class' => 'form-control col-md-4','required')); }}
-									</div>
-									</div>
-								</div>
-														
-								<div class="form-group">
-									<div class="row">
-									<label class="col-md-12" for="form-field-1">Cargo</label>
-									<div class="col-md-4">
-									{{ Form::select('cargo', array('Otro' => 'Otro', 'Director' => 'Director', 'Subdirector' => 'Subdirector'),null, array('class' => 'form-control')); }}
-									</div>														
-								</div>
-
-								<div class="form-group">
-									<label  for="form-field-1"> E-mail </label>
-								{{ Form::email('mail', '', array('placeholder' => 'E-mail','class' => 'form-control', 'required')); }}
-                                </div>
-
-								<div class="clearfix form-actions ">
-															
-								{{ Form::submit('Registrar', array('class' => 'btn btn-info')); }}
-								</div>
-							{{ Form::close() }}
-							</div><!-- End div #basic-form -->
-					</div><!-- End div .box-info -->
-				</div>
-            	<footer></footer>
-            	<div class="box-info">
-					<h2><i class="fa fa-cogs"></i><strong> Administrar Profesores</strong> Form</h2>
-							<!-- Additional button -->
-							<div class="additional-btn">
-								<a class="additional-icon"  data-toggle="collapse" data-target="#basic-form2"><i class="fa fa-chevron-down"></i></a>
-							</div>
-
-							<!-- Basic form body -->
-							<div id="basic-form2" class="collapse in">
-							<div class="table-responsive">
-							<table id="test" data-sortable class="table">
-							<thead>
-								<tr>
-									<th>Cedula</th>
-                                    <th>Nombre</th>
-                                    <th>Apellidos</th>
-                                    <th>Cargo</th>
-                                    <th>Correo</th>
-                                    <th>Género</th>
-                                    <th>Editar</th>
-								</tr>
-							</thead>
-							
-							<tbody>
-								@foreach($Profes as $item)
-								<tr class="odd gradeX">
-                                    <td>{{ $item->Cedula }}</td>
-                                    <td>{{ $item->Nombre }}</td>
-                                    <td>{{ $item->ApellidoP }} {{ $item->ApellidoM }}</td>
-                                    <td>{{ $item->Cargo }}</td>
-                                    <td>{{ $item->Correo }}</td>
-                                    <td>{{ $item->Genero }}</td>
-                                   
-                                    <td>
-                                    	<div class="btn-group btn-group-xs">
-									<a class="md-trigger btn btn-default" data-modal="a{{ $item->Cedula }}" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-edit"></i></a>
-									</div></td>
-                                </tr> 
-									         
-								@endforeach
-							</tbody>
-					</table>
-				</div><!-- End div .table-responsive -->
-				</div><!-- End div #basic-form -->
-
-				</div><!-- End div .box-info -->
+				
+				
+				
 				<!-- Footer -->
 				<footer>
 				&copy; 2015 <a href="index.html">Admin CATT</a>. Diseñado para <a href="http://www.isc.escom.ipn.mx/" target="_blank">ESCOM-IPN</a> por <a href="#fakelink">Team SGT</a>
 				</footer>
 				<!-- End Footer -->
-            	</div>
+			
+            </div>
 			<!-- ============================================================== -->
 			<!-- END YOUR CONTENT HERE -->
 			<!-- ============================================================== -->
@@ -434,74 +312,6 @@
 			</div>
 		</div><!-- End .md-modal -->
 		
-
-		@foreach($Profes as $item)
-		<div class="md-modal md-fade-in-scale-up" id="a{{ $item->Cedula }}">
-			<div class="md-content">
-				<h3>Editar Profesor</h3>
-				<div>
-					
-					<p>
-
-					{{ Form::open(array('url' => '/actualizarProfesores')); }}
-														<div class="form-group">
-															<label for="form-field-1"> Cédula</label>
-
-																{{ Form::text('ced',$item->Cedula, array('class' => 'form-control ','placeholder' => 'Nombre','readonly')); }}
-														</div>
-														<div class="form-group">
-															<div class="row">
-															<label class="col-md-12" for="form-field-8">Nombre</label>
-															
-															<span class="input-icon col-md-4">
-																{{ Form::text('nombre',$item->Nombre, array('class' => 'form-control ','placeholder' => 'Nombre')); }}
-																	
-																</span>
-
-																<span class="input-icon input-icon-right col-md-4">
-																	{{ Form::text('ap',$item->ApellidoP, array('class' => 'form-control col-md-4','placeholder' => 'Apellido Paterno')); }}
-																</span>
-																<span class="input-icon input-icon-right col-md-4">
-																	{{ Form::text('am',$item->ApellidoM, array('class' => 'form-control col-md-4','placeholder' => 'Apellido Materno')); }}
-																
-																</span>
-															</div>
-														</div>
-														<div class="form-group">
-															<div class="row">
-															<label class="col-md-4" for="form-field-1">Género</label>
-															<div class="col-md-4">
-															{{ Form::select('genero', array('M' => 'Masculino', 'F' => 'Femenino'),$item->Genero, array('class' => 'form-control col-md-4')); }}
-															</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<div class="row">
-															<label class="col-md-4" for="form-field-1">Cargo</label>
-															<div class="col-md-4">
-															{{ Form::select('cargo', array('Director' => 'Director', 'Otro' => 'Otro', 'Subdirector' => 'Subdirector'),$item->Cargo, array('class' => 'form-control')); }}
-															</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label  for="form-field-1"> E-mail </label>
-														{{ Form::text('mail',$item->Correo, array('placeholder' => 'E-mail','class' => 'form-control')); }}
-                                                      	</div>
-														
-													
-					{{ Form::reset('Cancelar', ['class' => 'btn btn-danger md-close']) }}
-					
-					{{ Form::submit('Actualizar', array('class' => 'btn btn-success')); }}
-					{{ Form::close() }}
-					</p>
-				</div>
-			</div><!-- End div .md-content -->
-		</div><!-- End div .md-modal .md-fade-in-scale-up -->
-		@endforeach
-
-
-
-
 		<!-- Modal Task Progress -->	
 		<div class="md-modal md-slide-stick-top" id="task-progress">
 			<div class="md-content">

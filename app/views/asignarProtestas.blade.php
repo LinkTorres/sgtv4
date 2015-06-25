@@ -83,20 +83,20 @@
 					<!-- Sidebar menu -->				
 					<div id="sidebar-menu">
 						<ul>
-							<li><a href="./"><i class="fa fa-home"></i> Dashboard</a></li>
-							<li class="active"><a href="./gestionProfesores"><i class="fa fa-users"></i> Gestionar Profesores</a></li>
+							<li><a href="index.html"><i class="fa fa-home"></i> Dashboard</a></li>
+							<li><a href="./gestionProfesores"><i class="fa fa-users"></i> Gestionar Profesores</a></li>
 							<li><a href="./gestionartt"><i class="fa fa-university"></i> Gestionar TT</a></li>
-							<li><a href="./registrott"><i class="fa fa-list"></i> Registros de TT</a></li>
-							<li><a href="./gestionPasantes"><i class="fa fa-graduation-cap"></i>Pasantes</a></li>
+							<li><a href="#./RegistrosTT"><i class="fa fa-list"></i> Registros de TT</a></li>
+							<li><a href="#"><i class="fa fa-graduation-cap"></i>Pasantes</a></li>
 							<li><a href="#"><i class="fa fa-angle-double-down i-right"></i><i class="fa fa-calendar"></i> Gestionar Protestas</a>
 								<ul>
-									<li><a href="./gestionProtestas"><i class="fa fa-angle-right"></i><i class=""></i> Registrar Protestas</a></li>
-									<li><a href="./asignarProtesta"><i class="fa fa-angle-right"></i><i class=""></i> Asignar Fechas de Protestas</a></li>
+									<li><a href="#"><i class="fa fa-angle-right"></i><i class=""></i> Registrar Protestas</a></li>
+									<li><a href="#"><i class="fa fa-angle-right"></i><i class=""></i> Asignar Fechas de Protestas</a></li>
 								</ul>
 							</li>
-							<li><a href="./generarActa"><i class="fa fa-file-o"></i> Generar Actas</a></li>
-							<li><a href="./generarOficio"><i class="fa fa-file-text-o	"></i> Generar Oficios</a></li>
-							<li><a href="./estadisticas"><i class="fa fa-bar-chart"></i>Estadísticas</a></li>
+							<li><a href="#"><i class="fa fa-file-o"></i> Generar Actas</a></li>
+							<li><a href="#"><i class="fa fa-file-text-o	"></i> Generar Oficios</a></li>
+							<li><a href="#"><i class="fa fa-bar-chart"></i>Generar Estadísticas</a></li>
 						</ul>
 						<div class="clear"></div>
 					</div><!-- End div #sidebar-menu -->
@@ -260,7 +260,7 @@
 				
 				<!-- Page header -->
 				<div class="page-heading">
-					<h1><i class="fa fa-users"></i> Gestionar Profesores</h1>
+					<h1><i class="fa fa-users"></i> Gestion Protestas</h1>
 				</div>
 				<!-- End page header -->
 				
@@ -270,7 +270,7 @@
                 <div class="alert alert-success">{{ Session::get('correcto') }}</div>
                     @endif
 				<div class="box-info">
-					<h2><i class="fa fa-user-plus"></i><strong> Agregar Profesores</strong> Form</h2>
+					<h2><i class="fa fa-user-plus"></i><strong>Gestion Protestas</strong> Form</h2>
 							<!-- Additional button -->
 							<div class="additional-btn">
 								<a class="additional-icon"  data-toggle="collapse" data-target="#basic-form"><i class="fa fa-chevron-down"></i></a>
@@ -283,61 +283,36 @@
                              	@if(Session::has('error'))
                             	<div class="alert alert-danger">{{ Session::get('error') }}</div>
                                       @endif
-									{{ Form::open(array('url' => '/gestionProfesores')); }}
+									{{ Form::open(array('url' => '/asignarProtesta')); }}
 								<div class="form-group">
-									<label for="form-field-1"> Cédula </label>
-									{{ Form::text('cedula', '', array('class' => 'form-control','placeholder' => 'Cédula','required')); }}
-								</div>
+														<label class="col-sm-3 col-md-4 control-label no-padding-right" for="form-field-1">Pasante</label>
+														<select class="form-control col-xs-10 col-sm-5 col-md-4" name="boleta">
+															@foreach($Pasante as $item)
+															<option value="{{ $item->Boleta }}">{{ $item->Boleta }}</option>
+															@endforeach
+														</select>
+								</div>	
+								
 								<div class="form-group">
-									<div class="row">
-									<label class="col-md-12" for="form-field-8">Nombre</label>
-															
-									<span class="input-icon col-md-4">
-										{{ Form::text('nombre', '', array('class' => 'form-control ','placeholder' => 'Nombre','required')); }}
-									</span>
-
-									<span class="input-icon input-icon-right col-md-4">
-										{{ Form::text('ap', '', array('class' => 'form-control col-md-4','placeholder' => 'Apellido Paterno','required')); }}
-									</span>
-									<span class="input-icon input-icon-right col-md-4">
-										{{ Form::text('am', '', array('class' => 'form-control col-md-4','placeholder' => 'Apellido Materno','required')); }}					
-									</span>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<div class="row">
-									<label class="col-md-12" for="form-field-1">Género</label>
-									<div class="col-md-4">
-									{{ Form::select('genero', array('M' => 'Masculino', 'F' => 'Femenino'),null, array('class' => 'form-control col-md-4','required')); }}
-									</div>
-									</div>
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Protesta</label>
+											<select class="form-control col-xs-10 col-sm-5 col-md-4" name="boleta">
+												@foreach($Protesta as $item)
+												<option value="{{ $item->id_Protesta }}">{{ $item->Fecha }} {{ $item->Hora_Inicio }}  </option>
+												@endforeach
+											</select>
 								</div>
 														
-								<div class="form-group">
-									<div class="row">
-									<label class="col-md-12" for="form-field-1">Cargo</label>
-									<div class="col-md-4">
-									{{ Form::select('cargo', array('Otro' => 'Otro', 'Director' => 'Director', 'Subdirector' => 'Subdirector'),null, array('class' => 'form-control')); }}
-									</div>														
-								</div>
-
-								<div class="form-group">
-									<label  for="form-field-1"> E-mail </label>
-								{{ Form::email('mail', '', array('placeholder' => 'E-mail','class' => 'form-control', 'required')); }}
-                                </div>
-
 								<div class="clearfix form-actions ">
 															
 								{{ Form::submit('Registrar', array('class' => 'btn btn-info')); }}
 								</div>
 							{{ Form::close() }}
 							</div><!-- End div #basic-form -->
-					</div><!-- End div .box-info -->
-				</div>
+				</div><!-- End div .box-info -->
+				
             	<footer></footer>
             	<div class="box-info">
-					<h2><i class="fa fa-cogs"></i><strong> Administrar Profesores</strong> Form</h2>
+					<h2><i class="fa fa-cogs"></i><strong>Calendario de </strong>Protestas</h2>
 							<!-- Additional button -->
 							<div class="additional-btn">
 								<a class="additional-icon"  data-toggle="collapse" data-target="#basic-form2"><i class="fa fa-chevron-down"></i></a>
@@ -347,37 +322,37 @@
 							<div id="basic-form2" class="collapse in">
 							<div class="table-responsive">
 							<table id="test" data-sortable class="table">
-							<thead>
-								<tr>
-									<th>Cedula</th>
-                                    <th>Nombre</th>
-                                    <th>Apellidos</th>
-                                    <th>Cargo</th>
-                                    <th>Correo</th>
-                                    <th>Género</th>
-                                    <th>Editar</th>
-								</tr>
-							</thead>
-							
-							<tbody>
-								@foreach($Profes as $item)
-								<tr class="odd gradeX">
-                                    <td>{{ $item->Cedula }}</td>
-                                    <td>{{ $item->Nombre }}</td>
-                                    <td>{{ $item->ApellidoP }} {{ $item->ApellidoM }}</td>
-                                    <td>{{ $item->Cargo }}</td>
-                                    <td>{{ $item->Correo }}</td>
-                                    <td>{{ $item->Genero }}</td>
-                                   
-                                    <td>
-                                    	<div class="btn-group btn-group-xs">
-									<a class="md-trigger btn btn-default" data-modal="a{{ $item->Cedula }}" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-edit"></i></a>
-									</div></td>
-                                </tr> 
-									         
-								@endforeach
-							</tbody>
-					</table>
+								<thead>
+									<tr>
+										<th>Fecha</th>
+	                                    <th>Hora</th>
+	                                    <th>Tipo</th>
+	                                    <th>Boleta</th>
+	                                    <th>Nombre</th>
+	                                    <th>Apellido Paterno</th>
+	                                    <th>Apellido Materno</th>
+	                                    
+									</tr>
+								</thead>
+								
+								<tbody>
+									
+									<tr class="odd gradeX">
+	                                    @foreach($Protestas as $item)
+											<td>{{ $item->Fecha }}</td>
+	                                    	<td>{{ $item->Hora_Inicio }}</td>
+	                                    	<td>{{ $item->Tipo }}</td>
+	                                    	<td>{{ $item->Boleta }}</td>
+	                                    	<td>{{ $item->Nombre }}</td>
+	                               			<td>{{ $item->ApellidoP }}</td>
+	                               			<td>{{ $item->ApellidoM }}</td>
+											
+									</tr> 
+									@endforeach
+	                                    
+	                                
+								</tbody>
+						</table>
 				</div><!-- End div .table-responsive -->
 				</div><!-- End div #basic-form -->
 
@@ -434,61 +409,45 @@
 			</div>
 		</div><!-- End .md-modal -->
 		
-
-		@foreach($Profes as $item)
-		<div class="md-modal md-fade-in-scale-up" id="a{{ $item->Cedula }}">
+		@foreach($Protestas as $item)
+		<div class="md-modal md-fade-in-scale-up" id="a{{ $item->id_Protesta }}">
 			<div class="md-content">
 				<h3>Editar Profesor</h3>
 				<div>
 					
 					<p>
 
-					{{ Form::open(array('url' => '/actualizarProfesores')); }}
-														<div class="form-group">
-															<label for="form-field-1"> Cédula</label>
+					{{ Form::open(array('url' => '/gestionProfesores')); }}
+								<div class="form-group">
+															<label for="form-field-1"> Protesta</label>
 
-																{{ Form::text('ced',$item->Cedula, array('class' => 'form-control ','placeholder' => 'Nombre','readonly')); }}
+																{{ Form::text('idPro',$item->id_Protesta, array('class' => 'form-control ','placeholder' => 'Nombre','readonly')); }}
 														</div>
-														<div class="form-group">
-															<div class="row">
-															<label class="col-md-12" for="form-field-8">Nombre</label>
-															
-															<span class="input-icon col-md-4">
-																{{ Form::text('nombre',$item->Nombre, array('class' => 'form-control ','placeholder' => 'Nombre')); }}
-																	
-																</span>
-
-																<span class="input-icon input-icon-right col-md-4">
-																	{{ Form::text('ap',$item->ApellidoP, array('class' => 'form-control col-md-4','placeholder' => 'Apellido Paterno')); }}
-																</span>
-																<span class="input-icon input-icon-right col-md-4">
-																	{{ Form::text('am',$item->ApellidoM, array('class' => 'form-control col-md-4','placeholder' => 'Apellido Materno')); }}
-																
-																</span>
-															</div>
-														</div>
-														<div class="form-group">
-															<div class="row">
-															<label class="col-md-4" for="form-field-1">Género</label>
-															<div class="col-md-4">
-															{{ Form::select('genero', array('M' => 'Masculino', 'F' => 'Femenino'),$item->Genero, array('class' => 'form-control col-md-4')); }}
-															</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<div class="row">
-															<label class="col-md-4" for="form-field-1">Cargo</label>
-															<div class="col-md-4">
-															{{ Form::select('cargo', array('Director' => 'Director', 'Otro' => 'Otro', 'Subdirector' => 'Subdirector'),$item->Cargo, array('class' => 'form-control')); }}
-															</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label  for="form-field-1"> E-mail </label>
-														{{ Form::text('mail',$item->Correo, array('placeholder' => 'E-mail','class' => 'form-control')); }}
-                                                      	</div>
+								<div class="form-group">
+														<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Fecha de protesta </label>
+														<div class="col-sm-9">
+															{{ Form::text('fecha', '', array('placeholder' => 'Fecha de Protesta', 'class'=> 'form-control')); }}
+														</div>	
+								</div>	
+								<br><br><br><br>
+								<div class="form-group">
+														<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Hora de Inicio </label>
+														<div class="col-sm-9">
+															{{ Form::text('inicio', '', array('placeholder' => 'Hora de Inicio', 'class'=> 'form-control')); }}
+														</div>	
+								</div>
 														
-													
+								<br><br><br><br>
+
+								<div class="form-group">
+														<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Hora de Fin </label>
+														<div class="col-sm-9">
+															{{ Form::text('fin', '', array('placeholder' => 'Hora de Fin', 'class'=> 'form-control')); }}
+														</div>	
+													</div>	
+
+														
+					<br><br><br>							
 					{{ Form::reset('Cancelar', ['class' => 'btn btn-danger md-close']) }}
 					
 					{{ Form::submit('Actualizar', array('class' => 'btn btn-success')); }}
@@ -498,6 +457,7 @@
 			</div><!-- End div .md-content -->
 		</div><!-- End div .md-modal .md-fade-in-scale-up -->
 		@endforeach
+		
 
 
 

@@ -8,6 +8,8 @@
     <meta name="description" content="">
     <meta name="keywords" content="admin, bootstrap,admin template, bootstrap admin, simple, awesome">
     <meta name="author" content="">
+   
+
 
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
@@ -41,28 +43,27 @@
     <![endif]-->
     
     <!-- FAVICON -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     
     
     
     <!-- BODY -->
-    <body class="tooltips full-content">
-    
-    
+    <body background="images/ipnfont1.jpg" class="tooltips full-content">
+     
     <!-- BEGIN PAGE -->
     <div class="container">
         
         <!-- Begin Login Page -->
         <div class="full-content-center animated fadeInDownBig">
-            <a href="#fakelink"><img src="images/logotipo.png" class="logo-login img-circle" alt="Logo"></a>
+            <a><img src="images/logotipo.png" class="logo-login img-circle" alt="Logo"></a>
             <div class="login-wrap">
                 <div class="box-info">
                 <h2 class="text-center"><strong>Login</strong>  CATT</h2>
                     {{-- Preguntamos si hay algún mensaje de error y si hay lo mostramos  --}}
-                                            @if(Session::has('mensaje_error'))
-                                            <div class="alert alert-danger">{{ Session::get('mensaje_error') }}</div>
-                                            @endif
+                    @if(Session::has('mensaje_error'))
+                    <div class="alert alert-danger">{{ Session::get('mensaje_error') }}</div>
+                    @endif
                     {{ Form::open(array('url' => '/login')) }}
                         <div class="form-group login-input">
                         <i class="fa fa-sign-in overlay"></i>

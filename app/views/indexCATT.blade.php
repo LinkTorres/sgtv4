@@ -52,7 +52,7 @@
 		<!-- Your logo goes here -->
 		<div class="logo-brand header sidebar rows">
 			<div class="logo">
-				<h1><a href="#fakelink"><img src="images/logo.png" alt="Logo" > SGT ADMIN</a></h1>
+				<h1><a href="./"><img src="images/logo.png" alt="Logo" > SGT ADMIN</a></h1>
 			</div>
 		</div><!-- End div .header .sidebar .rows -->
 	
@@ -197,7 +197,7 @@
 				<!-- Begin info box -->
 				<div class="row">
 					<!-- Orders Info Box -->
-					<div class="col-sm-6 col-xs-6">
+					<div class="col-sm-3 col-xs-12">
 						<!-- Box info -->
 						<div class="box-info">
 							<!-- Icon box -->
@@ -209,10 +209,14 @@
 							</div><!-- End div .icon-box -->
 							<!-- Text box -->
 							<div class="text-box">
-								<h3>1,234</h3>
+								<h3>{{ $PasantesTitulados }}</h3>
 								<p>Total de Pasantes</p>
 							</div><!-- End div .text-box -->
 						</div><!-- End div .info-box -->
+						
+					</div>
+					<!-- End Orders Info Box -->
+					<div  class="col-sm-6 col-xs-6">
 						<div class="box-info">
 							<!-- Icon box -->
 							<div class="icon-box">
@@ -223,7 +227,7 @@
 							</div><!-- End div .icon-box -->
 							<!-- Text box -->
 							<div class="text-box">
-								<h3>1,234</h3>
+								<h3>{{ $PasantesTituladosHombres }}</h3>
 								<p>Hombres Pasantes</p>
 							</div><!-- End div .text-box -->
 							<div class="clear"></div>
@@ -239,13 +243,12 @@
 							</div><!-- End div .icon-box -->
 							<!-- Text box -->
 							<div class="text-box">
-								<h3>1,234</h3>
+								<h3>{{ $PasantesTituladosMujeres }}</h3>
 								<p>Mujeres Pasantes</p>
 							</div><!-- End div .text-box -->
 							<div class="clear"></div>
 						</div><!-- End div .info-box -->
 					</div>
-					<!-- End Orders Info Box -->
 					<!-- Visitor Info Box -->
 					<div class="col-sm-3 col-xs-6">
 						<!-- Box info -->
@@ -260,17 +263,12 @@
 							</div><!-- End div .icon-box -->
 							<!-- Text box -->
 							<div class="text-box">
-								<h3>2,354</h3>
+								<h3>{{ $Profesores }}</h3>
 								<p>Profesores</p>
+
 							</div><!-- End div .text-box -->
 							<div class="clear"></div>
-							<!-- Progress bar -->
-							<div class="progress progress-xs">
-							  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-								<span class="sr-only">80&#37; Complete</span>
-							  </div>
-							</div><!-- End div .progress .progress-xs -->
-							<p class="text-center">15&#37; Mas que el año pasado</p>
+							
 						</div><!-- End div .info-box -->
 					</div>
 					<!-- End Visitor Info Box -->
@@ -291,17 +289,11 @@
 							</div><!-- End div .icon-box -->
 							<!-- Text box -->
 							<div class="text-box">
-								<h3>5,214</h3>
-								<p>Actas</p>
+								<h3>{{ $PasantesAño }}</h3>
+								<p>Titulados este año</p>
 							</div><!-- End div .text-box -->
 							<div class="clear"></div>
-							<!-- Progress bar -->
-							<div class="progress progress-xs">
-							  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
-								<span class="sr-only">95&#37; Complete</span>
-							  </div>
-							</div><!-- End div .progress .progress-xs -->
-							<p class="text-center">12&#37; Higher than Yesterday</p>
+							
 						</div><!-- End div .info-box -->
 					</div>
 					<!-- End Downloads Info Box -->
@@ -320,17 +312,12 @@
 							</div><!-- End div .icon-box -->
 							<!-- Text box -->
 							<div class="text-box">
-								<h3>572</h3>
-								<p>SHIPPING</p>
+								<h3>{{ $PasantesSemestre }}</h3>
+								<p>Titulados este semestre</p>
 							</div><!-- End div .text-box -->
 							<div class="clear"></div>
 							<!-- Progress bar -->
-							<div class="progress progress-xs">
-							  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%">
-								<span class="sr-only">55&#37; Complete</span>
-							  </div>
-							</div><!-- End div .progress .progress-xs -->
-							<p class="text-center">3&#37; Higher than Yesterday</p>
+							
 						</div><!-- End div .info-box -->
 					</div>
 					<!-- End Shipping Info Box -->

@@ -54,7 +54,7 @@
 					<!-- Your logo goes here -->
 					<div class="logo-brand header sidebar rows">
 						<div class="logo">
-							<h1><a href="#fakelink"><img src="assets/img/logo.png" alt="Logo"> SGT ADMIN</a></h1>
+							<h1><a href="./"><img src="images/logo.png" alt="Logo" > SGT ADMIN</a></h1>
 						</div>
 					</div><!-- End div .header .sidebar .rows -->
 				
@@ -70,11 +70,11 @@
 								<!-- User Session -->
 								<div class="media">
 									<a class="pull-left" href="#fakelink">
-										{{ HTML::image('images/SGTlogo.jpg'); }}
+										<img src="images/sgt.png" alt="Logo" width='70' height='70'>
 										</a>
 									<div class="media-body">
 										Bienvenido,
-										<h4 class="media-heading"><strong>CATT</strong></h4>
+										<h4 class="media-heading"><strong>ADMIN</strong></h4>
 									</div><!-- End div .media-body -->
 								</div><!-- End div .media -->
 								

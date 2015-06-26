@@ -22,7 +22,57 @@
 
 		public function home()
 		{
-			return View::make('indexCATT');
+
+			$PasantesTitulados=DB::table('Pasante')
+								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
+								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->count();
+			$PasantesTituladosMujeres=DB::table('Pasante')
+								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
+								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->where('Genero','F')
+								->count();
+			$PasantesTituladosHombres=DB::table('Pasante')
+								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
+								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->where('Genero','M')
+								->count();
+			$Profesores=DB::table('Profesor')
+								->count();
+
+			$año=(int)date("Y");  
+			$mes=(int)date("n");
+
+
+			$PasantesAño=DB::table('Pasante')
+								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
+								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->where('Anio_Titulacion',$año)
+								->count();
+			if($mes<7){
+				$PasantesSemestre=DB::table('Pasante')
+								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
+								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->where('Anio_Titulacion',$año)
+								->where('Semestre_Titulacion','B')
+								->count();
+			}
+			else{
+				$PasantesSemestre=DB::table('Pasante')
+								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
+								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->where('Anio_Titulacion',$año)
+								->where('Semestre_Titulacion','A')
+								->count();
+			}
+
+			return View::make('indexCATT')
+				->with('PasantesTitulados',$PasantesTitulados)
+				->with('PasantesTituladosHombres',$PasantesTituladosHombres)
+				->with('PasantesTituladosMujeres',$PasantesTituladosMujeres)
+				->with('PasantesAño',$PasantesAño)
+				->with('PasantesSemestre',$PasantesSemestre)
+				->with('Profesores',$Profesores);
 		}
 
 		public function altaProfesores()

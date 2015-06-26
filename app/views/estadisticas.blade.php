@@ -54,7 +54,7 @@
 								<!-- Your logo goes here -->
 								<div class="logo-brand header sidebar rows">
 									<div class="logo">
-										<h1><a href="#fakelink"><img src="assets/img/logo.png" alt="Logo"> SGT ADMIN</a></h1>
+										<h1><a href="./"><img src="images/logo.png" alt="Logo" > SGT ADMIN</a></h1>
 									</div>
 								</div><!-- End div .header .sidebar .rows -->
 							
@@ -70,11 +70,11 @@
 											<!-- User Session -->
 											<div class="media">
 												<a class="pull-left" href="#fakelink">
-													{{ HTML::image('images/SGTlogo.jpg'); }}
+													<img src="images/sgt.png" alt="Logo" width='70' height='70'>
 													</a>
 												<div class="media-body">
 													Bienvenido,
-													<h4 class="media-heading"><strong>CATT</strong></h4>
+													<h4 class="media-heading"><strong>ADMIN</strong></h4>
 												</div><!-- End div .media-body -->
 											</div><!-- End div .media -->
 											
@@ -464,6 +464,70 @@
 
 
 
+									<div class="row"><br><br></div>
+									
+									<div id="container225" style="width:100%; height:500px;"></div>
+
+									<script type="text/javascript">
+
+
+										$(document).ready(function() {
+
+											var pasantes = [];
+											var generacion = [];
+
+											var hombres = [];
+											var mujeres = [];
+											
+											@foreach($PasantesTitulados as $item)
+									         	pasantes.push({{ $item->alumnos }});
+									         	generacion.push({{ $item->anio }}); 
+											@endforeach
+
+											@foreach($PasantesTituladosHombres as $item)
+									         	hombres.push({{ $item->alumnos }});
+									         	generacion.push({{ $item->anio }}); 
+											@endforeach
+
+											@foreach($PasantesTituladosMujeres as $item)
+									         	mujeres.push({{ $item->alumnos }});
+									         	generacion.push({{ $item->anio }}); 
+											@endforeach
+
+											var pasantesTotal = JSON.stringify(pasantes);
+											var generaciones = JSON.stringify(generacion);
+											var hombresTotal = JSON.stringify(hombres);
+											var mujeresTotal = JSON.stringify(mujeres);
+
+										    var chart1 = new Highcharts.Chart({
+										        chart: {
+										            renderTo: 'container225',
+										            type: 'column'
+										        },
+										        title: {
+										            text: 'Pasantes por Año'
+										        },
+										        xAxis: {
+										            categories: JSON.parse(generaciones)
+										        },
+										        yAxis: {
+										            title: {
+										                text: 'Número de pasantes'
+										            }
+										        },
+										        series: [{
+										            name: 'Hombres',
+										            data: JSON.parse(hombresTotal)
+										        }, {
+										            name: 'Mujeres',
+										            data: JSON.parse(mujeresTotal)
+										        }, {
+										            name: 'Total',
+										            data: JSON.parse(pasantesTotal)
+										        }]
+										    });
+										});
+									</script>
 
 
 

@@ -43,6 +43,8 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('asignarProtesta', 'HomeController@asignarProtesta');
 	Route::post('asignarProtesta', 'HomeController@asignarProtestaPasante');
 
+	Route::get('estadisticas', 'HomeController@estadisticas');
+
 
 	Route::get('indexPAS', 'HomeController@verindexPas');
 	

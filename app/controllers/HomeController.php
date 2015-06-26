@@ -374,21 +374,131 @@
 
 		public function asignarProtestaPasante()
 		{
-			$fecha = e(Input::get('fecha')); 
-			$inicio = e(Input::get('inicio')); 
-			$fin = e(Input::get('fin'));
 			
-			DB::table('Protesta')->insert(
-    						array('Fecha' => $fecha, 'Hora_Inicio' => $inicio,'Hora_Fin'=>$fin));
+			$boleta = e(Input::get('boleta')); 
+			$protesta2 = e(Input::get('protesta')); 
+
+			$pro = DB::table('Historial_Protesta')->where('Pasante_Boleta',$boleta)->pluck('Tipo');
+			$correcto ='';
+			if(count($pro))
+			{
+				
+				DB::table('Historial_Protesta')->insert(
+    						array('Protesta_id_Protesta' => $protesta2, 'Pasante_Boleta' => $boleta,'Tipo' => 'Reasignada'));
+				$correcto = "La protesta ha sido reasignada correctamente";
+				
+			}
+			else
+			{
+				
+				DB::table('Historial_Protesta')->insert(
+    						array('Protesta_id_Protesta' => $protesta2, 'Pasante_Boleta' => $boleta,'Tipo' => 'Asignada'));
+				$correcto = "La protesta ha sido asignada correctamente";
+				
+	        }
 
 
-	            $correcto = "La protesta ha sido registrada correctamente";
+	       
 
-	           return Redirect::to('gestionProtestas')
+			$Protestas= DB::table('Protesta')
+						->join('Historial_Protesta','Protesta.id_Protesta','=','Historial_Protesta.Protesta_id_Protesta')
+						->join('Pasante','Pasante.Boleta','=','Historial_Protesta.Pasante_Boleta')
+						->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+						->orderBy('Fecha', 'desc')
+	            		->get();
+	       
+
+	        $Pasante = DB::table('Pasante')
+	            		->get();
+	        
+	        $Protesta = DB::table('Protesta')
+	            		->get();
+
+	        
+			return Redirect::to('asignarProtesta')
 						->with('correcto',$correcto);
-			
+				
 		}
 
+
+
+		public function estadisticas()
+		{
+
+			$Hombres=DB::table('Pasante')
+						->select('Generacion_id_Generacion as Generacion',DB::raw('count(*) as alumnos'))
+						->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
+						->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+						->where('Genero','M')
+						->groupBy('Generacion_id_Generacion')
+						->orderBy('Generacion_id_Generacion','asc')
+						->get();
+
+	        Log::info("Hombres:\n " . print_r($Hombres, true));
+
+
+	        $Mujeres=DB::table('Pasante')
+						->select('Generacion_id_Generacion as Generacion',DB::raw('count(*) as alumnos'))
+						->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
+						->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+						->where('Genero','F')
+						->groupBy('Generacion_id_Generacion')
+						->orderBy('Generacion_id_Generacion','asc')
+						->get();
+
+			Log::info("Mujeres: " . print_r($Mujeres, true));
+
+	        $Pasantes=DB::table('Pasante')
+	        			->select('Generacion_id_Generacion as Generacion',DB::raw('count(*) as alumnos'))
+						->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
+						->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+						->groupBy('Generacion_id_Generacion')
+						->orderBy('Generacion_id_Generacion','asc')
+						->get();
+
+			$PasantesTitulados=DB::table('Pasante')
+			        			->select('Anio_Titulacion as anio',DB::raw('count(*) as alumnos'))
+								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
+								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->groupBy('Anio_Titulacion')
+								->orderBy('Anio_Titulacion','desc')
+								->get();
+
+			Log::info("Pasantes titulados " . print_r($PasantesTitulados, true));
+
+
+			$PasantesTituladosMujeres=DB::table('Pasante')
+			        			->select('Anio_Titulacion as anio',DB::raw('count(*) as alumnos'))
+								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
+								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->where('Genero','F')
+								->groupBy('Anio_Titulacion')
+								->orderBy('Anio_Titulacion','desc')
+								->get();
+
+			Log::info("Pasantes titulados Mujeres" . print_r($PasantesTituladosMujeres, true));
+
+			$PasantesTituladosHombres=DB::table('Pasante')
+			        			->select('Anio_Titulacion as anio',DB::raw('count(*) as alumnos'))
+								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
+								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->where('Genero','M')
+								->groupBy('Anio_Titulacion')
+								->orderBy('Anio_Titulacion','desc')
+								->get();
+
+			Log::info("Pasantes titulados Hombres" . print_r($PasantesTituladosHombres, true));
+
+			Log::info("Pasantes: " . print_r($Pasantes, true));
+
+			return View::make('estadisticas')
+			 ->with('Pasantes',$Pasantes)
+			 ->with('Hombres',$Hombres)
+			 ->with('PasantesTitulados',$PasantesTitulados)
+			 ->with('PasantesTituladosHombres',$PasantesTituladosHombres)
+			 ->with('PasantesTituladosMujeres',$PasantesTituladosMujeres)
+			 ->with('Mujeres',$Mujeres);
+		}
 		
 
 		
@@ -428,9 +538,7 @@
 
 		public static function verificarPasante($data,$nombre,$tt)
 		{
-			Log::info("la pendejada 31" . print_r($data, true));
-			Log::info("la pendejada 32" . print_r($nombre, true));
-			Log::info("la pendejada 33" . print_r($tt, true));
+			
 			$pro = DB::table('Pasante')->where('Boleta',$data)->pluck('TT_Num_TT');
 			if(count($pro)>0)
 			{
@@ -439,7 +547,7 @@
 						->with('error',$error)
 					    ->withInput();
 			}
-			Log::info("pendejada 77: ");
+			
 			$id = DB::table('Usuario')->insertGetId(array('Rol' => 'Alumno'));
 			DB::table('Pasante')->insert(array('Boleta' => $data,'TT_Num_TT' => $tt,'Usuario_id_Usuario' => $id));
 		}

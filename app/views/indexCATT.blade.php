@@ -52,7 +52,7 @@
 		<!-- Your logo goes here -->
 		<div class="logo-brand header sidebar rows">
 			<div class="logo">
-				<h1><a href="#fakelink"><img src="images/logo.png" alt="Logo"> SGT ADMIN</a></h1>
+				<h1><a href="#fakelink"><img src="images/logo.png" alt="Logo" > SGT ADMIN</a></h1>
 			</div>
 		</div><!-- End div .header .sidebar .rows -->
 	
@@ -68,11 +68,11 @@
 					<!-- User Session -->
 					<div class="media">
 							<a class="pull-left" href="#fakelink">
-							{{ HTML::image('images/SGTlogo.jpg'); }}
+								<img src="images/sgt.png" alt="Logo" width='70' height='70'>
 							</a>
 						<div class="media-body">
 							Bienvenido,
-							<h4 class="media-heading"><strong>CATT</strong></h4>
+							<h4 class="media-heading"><strong>ADMIN</strong></h4>
 						</div><!-- End div .media-body -->
 					</div><!-- End div .media -->
 					
@@ -138,7 +138,8 @@
 								
 								<!-- Dropdown notifications -->
 								<li class="dropdown">
-									<a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="label label-danger absolute">24</span></a>
+									<a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
+										<i class="fa fa-bell"></i><span class="label label-danger absolute">5</span></a>
 									<ul class="dropdown-menu dropdown-message animated half flipInX">
 										<!-- Dropdown notification header -->
 										<li class="dropdown-header notif-header">New Notifications</li>
@@ -151,92 +152,20 @@
 											<br /><i>2 minutes ago</i></p>
 											</a>
 										</li>
-										<li class="unread">
-											<a href="#fakelink">
-											<p><strong>John Doe</strong> Created an photo album  <strong>&#34;Indonesia Tourism&#34;</strong>
-											<br /><i>8 minutes ago</i></p>
-											</a>
-										</li>
-										<li>
-											<a href="#fakelink">
-											<p><strong>Annisa</strong> Posted an article  <strong>&#34;Yogyakarta never ending Asia&#34;</strong>
-											<br /><i>an hour ago</i></p>
-											</a>
-										</li>
-										<li>
-											<a href="#fakelink">
-											<p><strong>Ari Rusmanto</strong> Added 3 products
-											<br /><i>3 hours ago</i></p>
-											</a>
-										</li>
-										<li>
-											<a href="#fakelink">
-											<p><strong>Hana Sartika</strong> Send you a message  <strong>&#34;Lorem ipsum dolor...&#34;</strong>
-											<br /><i>12 hours ago</i></p>
-											</a>
-										</li>
-										<li>
-											<a href="#fakelink">
-											<p><strong>Johnny Depp</strong> Updated his avatar
-											<br /><i>Yesterday</i></p>
-											</a>
-										</li>
 										
-										<!-- Dropdown notification footer -->
-										<li class="dropdown-footer"><a href="#fakelink"><i class="fa fa-refresh"></i> Refresh</a></li>
 									</ul>
 								</li>
 								<!-- End Dropdown notifications -->
 							
 								
-								<!-- Dropdown Messages -->
-								<li class="dropdown">
-									<a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="label label-danger absolute">24</span></a>
-									<ul class="dropdown-menu dropdown-message animated half flipInX">
-										<!-- Dropdown Messages header -->
-										<li class="dropdown-header notif-header">New Messages</li>
-										
-										<!-- Dropdown messages body -->
-										<li class="divider"></li>
-										<li class="unread">
-											<a href="#fakelink">
-											<img src="assets/img/avatar/2.jpg" class="xs-avatar ava-dropdown" alt="Avatar">
-											<strong>John Doe</strong><br />
-											<p>Duis autem vel eum iriure dolor in hendrerit ...</p>
-											<p><i>5 minutes ago</i></p>
-											</a>
-										</li>
-										<li class="unread">
-											<a href="#fakelink">
-											<img src="assets/img/avatar/1.jpg" class="xs-avatar ava-dropdown" alt="Avatar">
-											<strong>Annisa Rusmanovski</strong><br />
-											<p>Duis autem vel eum iriure dolor in hendrerit ...</p>
-											<p><i>2 hours ago</i></p>
-											</a>
-										</li>
-										<li>
-											<a href="#fakelink">
-											<img src="assets/img/avatar/3.jpg" class="xs-avatar ava-dropdown" alt="Avatar">
-											<strong>Ari Rusmanto</strong><br />
-											<p>Duis autem vel eum iriure dolor in hendrerit ...</p>
-											<p><i>5 hours ago</i></p>
-											</a>
-										</li>
-										
-										<!-- Dropdown messages footer -->
-										<li class="dropdown-footer"><a href="#fakelink"><i class="fa fa-share"></i> See all messages</a></li>
-									</ul>
-								</li>
-								<!-- End Dropdown messages -->
+								
 							
 								<!-- Dropdown User session -->
 								<li class="dropdown">
 									<a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">Admin, <strong>CATT</strong> <i class="fa fa-chevron-down i-xs"></i></a>
 									<ul class="dropdown-menu animated half flipInX">
-										<li><a href="#fakelink">Mi Perfil</a></li>
-										<li><a href="#fakelink">Cambiar Password</a></li>
-										<li><a href="./BloquearPantalla"><i class="fa fa-lock"></i> Bloquear Pantalla</a></li>
-										<li class="divider"></li>
+										
+										<li class="divider"></li><li><a href="#fakelink">Cambiar Password</a></li>
 										<li><a href="#fakelink"><i class="fa fa-cog"></i> Configuración</a></li>
 										<li><a href="./logout" class="md-trigger" data-modal="logout-modal"> Cerrar Sesión</a></li>
 									</ul>
@@ -267,7 +196,56 @@
 				
 				<!-- Begin info box -->
 				<div class="row">
-					
+					<!-- Orders Info Box -->
+					<div class="col-sm-6 col-xs-6">
+						<!-- Box info -->
+						<div class="box-info">
+							<!-- Icon box -->
+							<div class="icon-box">
+								<span class="fa-stack">
+								  <i class="fa fa-circle fa-stack-2x success"></i>
+								  <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+								 </span>
+							</div><!-- End div .icon-box -->
+							<!-- Text box -->
+							<div class="text-box">
+								<h3>1,234</h3>
+								<p>Total de Pasantes</p>
+							</div><!-- End div .text-box -->
+						</div><!-- End div .info-box -->
+						<div class="box-info">
+							<!-- Icon box -->
+							<div class="icon-box">
+								<span class="fa-stack">
+								  <i class="fa fa-circle fa-stack-2x info"></i>
+								  <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+								 </span>
+							</div><!-- End div .icon-box -->
+							<!-- Text box -->
+							<div class="text-box">
+								<h3>1,234</h3>
+								<p>Hombres Pasantes</p>
+							</div><!-- End div .text-box -->
+							<div class="clear"></div>
+						</div><!-- End div .info-box -->
+						
+						<div class="box-info">
+							<!-- Icon box -->
+							<div class="icon-box">
+								<span class="fa-stack">
+								  <i class="fa fa-circle fa-stack-2x danger"></i>
+								  <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+								 </span>
+							</div><!-- End div .icon-box -->
+							<!-- Text box -->
+							<div class="text-box">
+								<h3>1,234</h3>
+								<p>Mujeres Pasantes</p>
+							</div><!-- End div .text-box -->
+							<div class="clear"></div>
+						</div><!-- End div .info-box -->
+					</div>
+					<!-- End Orders Info Box -->
 					<!-- Visitor Info Box -->
 					<div class="col-sm-3 col-xs-6">
 						<!-- Box info -->
@@ -297,33 +275,7 @@
 					</div>
 					<!-- End Visitor Info Box -->
 					
-					<!-- Orders Info Box -->
-					<div class="col-sm-3 col-xs-6">
-						<!-- Box info -->
-						<div class="box-info">
-							<!-- Icon box -->
-							<div class="icon-box">
-								<span class="fa-stack">
-								  <i class="fa fa-circle fa-stack-2x danger"></i>
-								  <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
-								 </span>
-							</div><!-- End div .icon-box -->
-							<!-- Text box -->
-							<div class="text-box">
-								<h3>1,234</h3>
-								<p>Pasantes</p>
-							</div><!-- End div .text-box -->
-							<div class="clear"></div>
-							<!-- Progress bar -->
-							<div class="progress progress-xs">
-							  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
-								<span class="sr-only">65&#37; Complete</span>
-							  </div>
-							</div><!-- End div .progress .progress-xs -->
-							<p class="text-center">5&#37; Mas que el año pasado</p>
-						</div><!-- End div .info-box -->
-					</div>
-					<!-- End Orders Info Box -->
+					
 					
 					
 					<!-- Downloads Info Box -->
@@ -387,46 +339,7 @@
 				<!-- End of info box -->
 				
 				
-				<div class="row">
-					<div class="col-sm-12">
-						<!-- Website statistic -->
-						<div class="box-info">
-							<h2><strong>Website</strong> Statistic</h2>
-							
-							<!-- Additional buttons -->
-							<div class="additional-btn">
-								<a class="additional-icon" href="#fakelink"><i class="fa fa-refresh fa-spin"></i></a>
-								  <a class="additional-icon" id="dropdownMenu1" data-toggle="dropdown">
-									<i class="fa fa-cog"></i>
-								  </a>
-								  <ul class="dropdown-menu pull-right animated half fadeInDown" role="menu" aria-labelledby="dropdownMenu1">
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="#fakelink">Action</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="#fakelink">Another action</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="#fakelink">Something else here</a></li>
-									<li role="presentation" class="divider"></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="#fakelink">Separated link</a></li>
-								  </ul>
-								<a class="additional-icon" href="#fakelink" data-toggle="collapse" data-target="#website-statistic"><i class="fa fa-chevron-down"></i></a>
-								<a class="additional-icon" href="#fakelink"><i class="fa fa-question-circle"></i></a>
-							</div><!-- End div .additional-button -->
-							<!-- Statistic inner -->
-							<div id="website-statistic" class="statistic-chart collapse in">
-								<!-- Button group -->
-								<div class="btn-group btn-group-xs pull-right">
-									<button class="btn btn-default">All time</button>
-									<button class="btn btn-default">This year</button>
-									<button class="btn btn-default">This month</button>
-									<button class="btn btn-default">Today</button>
-								</div><!-- End div .btn-group -->
-								
-								<!-- Call morris cart with selector #morris-home -->
-								<div id="morris-home" style="height: 200px;"></div>
-								<!-- End morris cart with selector -->
-							</div><!-- End div #website-statistic -->
-						</div><!-- End div .box-info -->
-					</div>
-					
-				</div><!-- End div .row -->
+				
 				
 				
 				<!-- Footer -->

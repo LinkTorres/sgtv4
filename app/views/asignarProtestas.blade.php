@@ -83,20 +83,20 @@
 					<!-- Sidebar menu -->				
 					<div id="sidebar-menu">
 						<ul>
-							<li><a href="index.html"><i class="fa fa-home"></i> Dashboard</a></li>
+							<li ><a href="./"><i class="fa fa-home"></i> Dashboard</a></li>
 							<li><a href="./gestionProfesores"><i class="fa fa-users"></i> Gestionar Profesores</a></li>
 							<li><a href="./gestionartt"><i class="fa fa-university"></i> Gestionar TT</a></li>
-							<li><a href="#./RegistrosTT"><i class="fa fa-list"></i> Registros de TT</a></li>
-							<li><a href="#"><i class="fa fa-graduation-cap"></i>Pasantes</a></li>
-							<li><a href="#"><i class="fa fa-angle-double-down i-right"></i><i class="fa fa-calendar"></i> Gestionar Protestas</a>
+							<li><a href="./registrott"><i class="fa fa-list"></i> Registros de TT</a></li>
+							<li><a href="./gestionPasantes"><i class="fa fa-graduation-cap"></i>Pasantes</a></li>
+							<li class="active"><a href="#"><i class="fa fa-angle-double-down i-right"></i><i class="fa fa-calendar"></i> Gestionar Protestas</a>
 								<ul>
-									<li><a href="#"><i class="fa fa-angle-right"></i><i class=""></i> Registrar Protestas</a></li>
-									<li><a href="#"><i class="fa fa-angle-right"></i><i class=""></i> Asignar Fechas de Protestas</a></li>
+									<li><a href="./gestionProtestas"><i class="fa fa-angle-right"></i><i class=""></i> Registrar Protestas</a></li>
+									<li class="active"><a href="./asignarProtesta"><i class="fa fa-angle-right"></i><i class=""></i> Asignar Fechas de Protestas</a></li>
 								</ul>
 							</li>
-							<li><a href="#"><i class="fa fa-file-o"></i> Generar Actas</a></li>
-							<li><a href="#"><i class="fa fa-file-text-o	"></i> Generar Oficios</a></li>
-							<li><a href="#"><i class="fa fa-bar-chart"></i>Generar Estadísticas</a></li>
+							<li><a href="./generarActa"><i class="fa fa-file-o"></i> Generar Actas</a></li>
+							<li><a href="./generarOficio"><i class="fa fa-file-text-o	"></i> Generar Oficios</a></li>
+							<li><a href="./estadisticas"><i class="fa fa-bar-chart"></i>Estadísticas</a></li>
 						</ul>
 						<div class="clear"></div>
 					</div><!-- End div #sidebar-menu -->
@@ -267,8 +267,8 @@
 				
 				<!-- Begin info box -->
 				@if(Session::has('correcto'))
-                <div class="alert alert-success">{{ Session::get('correcto') }}</div>
-                    @endif
+                	<div class="alert alert-success">{{ Session::get('correcto') }}</div>
+                @endif
 				<div class="box-info">
 					<h2><i class="fa fa-user-plus"></i><strong>Gestion Protestas</strong> Form</h2>
 							<!-- Additional button -->
@@ -285,17 +285,17 @@
                                       @endif
 									{{ Form::open(array('url' => '/asignarProtesta')); }}
 								<div class="form-group">
-														<label class="col-sm-3 col-md-4 control-label no-padding-right" for="form-field-1">Pasante</label>
-														<select class="form-control col-xs-10 col-sm-5 col-md-4" name="boleta">
-															@foreach($Pasante as $item)
-															<option value="{{ $item->Boleta }}">{{ $item->Boleta }}</option>
-															@endforeach
-														</select>
+									<label class="col-sm-3 col-md-4 control-label no-padding-right" for="form-field-1">Pasante</label>
+									<select class="form-control col-xs-10 col-sm-5 col-md-4" name="boleta">
+										@foreach($Pasante as $item)
+										<option value="{{ $item->Boleta }}">{{ $item->Boleta }}</option>
+										@endforeach
+									</select>
 								</div>	
 								
 								<div class="form-group">
 											<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Protesta</label>
-											<select class="form-control col-xs-10 col-sm-5 col-md-4" name="boleta">
+											<select class="form-control col-xs-10 col-sm-5 col-md-4" name="protesta">
 												@foreach($Protesta as $item)
 												<option value="{{ $item->id_Protesta }}">{{ $item->Fecha }} {{ $item->Hora_Inicio }}  </option>
 												@endforeach

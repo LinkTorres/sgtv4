@@ -18,6 +18,9 @@
 
     <!-- VENDOR -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" />
+
     {{ HTML::style('css/animate.css'); }}
     {{ HTML::style('third/weather-icon/css/weather-icons.min.css'); }}
     {{ HTML::style('third/morris/morris.css'); }}
@@ -29,6 +32,7 @@
     {{ HTML::style('third/magnific-popup/magnific-popup.css'); }}
     {{ HTML::style('third/datepicker/css/datepicker.css'); }}
 
+	
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -346,7 +350,7 @@
 							<!-- Basic form body -->
 							<div id="basic-form2" class="collapse in">
 							<div class="table-responsive">
-							<table id="test" data-sortable class="table">
+							<table id="profesores"  class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>
 									<th>Cedula</th>
@@ -562,6 +566,7 @@
     <!-- Basic Javascripts (Jquery and bootstrap) -->
     {{ HTML::script('js/jquery.js'); }}
 
+
     {{ HTML::script('js/bootstrap.min.js'); }}
 
     
@@ -573,6 +578,9 @@
     
     <!-- Morris js -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://www.bestyoumexico.com/media/js/panel_admin/dataTables.bootstrap.min.js"></script>
+    <script src="http://www.bestyoumexico.com/media/js/panel_admin/jquery.dataTables.min.js"></script>
+    
     {{ HTML::script('third/morris/morris.js'); }}
 
     
@@ -616,10 +624,30 @@
     {{ HTML::script('third/wizard/jquery.easyWizard.js'); }}
 
     {{ HTML::script('third/wizard/scripts.js'); }}
+    {{ HTML::script('third/dataTables/jquery.dataTables.min.js'); }}
+    
 
     
     <!-- LANCENG TEMPLATE JAVASCRIPT -->
     {{ HTML::script('js/lanceng.js'); }}
+
+    <script>
+						$("#profesores").DataTable(
+
+	{
+		
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ usuarios por página",
+            "sSearch": "Buscar: ",
+            "zeroRecords": "Nothing found - sorry",
+            "info": "Pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(filtered from _MAX_ total records)"
+        }
+
+        
+    });
+					</script>
 
 	</body>
 </html>

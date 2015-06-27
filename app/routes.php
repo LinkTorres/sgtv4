@@ -11,8 +11,10 @@ Route::get('loginPas', 'HomeController@showLoginPas');
 
 Route::get('olvidopassword', 'HomeController@olvidoPas');
 
-Route::get('BloquearPantalla', 'HomeController@blocPan');
 
+
+Route::get('Registro','AlumnoController@registro');
+Route::post('Registro','AlumnoController@altaRegistro');
 
 //aqui termina lo que hizo hilario
 
@@ -47,11 +49,13 @@ Route::group(array('before' => 'auth'), function()
 
 
 	Route::get('indexPAS', 'HomeController@verindexPas');
+	Route::get('verJurado', 'AlumnoController@verJurado');
 	
 	// Esta ruta nos servirá para cerrar sesión.
 	Route::get('logout', 'AuthController@logOut');
 
 	//aqui le metio mano hilario
+	Route::get('BloquearPantalla', 'HomeController@blocPan');
 
 
 });

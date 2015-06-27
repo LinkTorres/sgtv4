@@ -62,7 +62,7 @@
                          @if(Session::has('mensaje_error'))
                          <div class="alert alert-danger">{{ Session::get('mensaje_error') }}</div>
                          @endif
-                        {{ Form::open(array('url' => '/loginPas')) }}
+                        {{ Form::open(array('url' => '/login')) }}
                         <div class="form-group login-input">
                         <i class="fa fa-sign-in overlay"></i>
                         {{ Form::text('username', Input::old('username'), array('class' => 'form-control text-input','placeholder' => 'Número de Boleta')); }}
@@ -83,13 +83,16 @@
                             <div class="col-sm-6">
                             {{ Form::submit('Ingresar', array('class' => 'btn btn-success btn-block')) }}
                             </div>
-                        
+                             {{ Form::close() }}
+
                             <div class="col-sm-6">
-                            {{ Form::submit('Registrarse', array('class' => 'btn btn-info btn-block')) }}
+                            
+                            <a href="./Registro" class="btn btn-info btn-block">Registro</a>
+                            
                             </div>
                         </div>
                        
-                   {{ Form::close() }}
+                  
                     
                 </div>
 

@@ -18,6 +18,7 @@
 
     <!-- VENDOR -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker3.css" />
     {{ HTML::style('css/animate.css'); }}
     {{ HTML::style('third/weather-icon/css/weather-icons.min.css'); }}
     {{ HTML::style('third/morris/morris.css'); }}
@@ -288,7 +289,7 @@
 								<div class="form-group">
 														<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Fecha de protesta </label>
 														<div class="col-sm-9">
-															{{ Form::text('fecha', '', array('placeholder' => 'Fecha de Protesta', 'class'=> 'form-control')); }}
+															{{ Form::text('fecha', '', array('placeholder' => 'Fecha de Protesta', 'class'=> 'form-control datepicker')); }}
 														</div>	
 								</div>	
 								
@@ -536,6 +537,7 @@
     
     <!-- Morris js -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.js"></script>
     {{ HTML::script('third/morris/morris.js'); }}
 
     
@@ -579,10 +581,18 @@
     {{ HTML::script('third/wizard/jquery.easyWizard.js'); }}
 
     {{ HTML::script('third/wizard/scripts.js'); }}
+	
 
     
     <!-- LANCENG TEMPLATE JAVASCRIPT -->
     {{ HTML::script('js/lanceng.js'); }}
+
+    <script type="text/javascript">
+		$(document).ready(function() {
+		    $('#fecha').datepicker({
+		    });
+		} );
+	</script>
 
 	</body>
 </html>

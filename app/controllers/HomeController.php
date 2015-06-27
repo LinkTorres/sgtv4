@@ -22,19 +22,18 @@
 
 		public function home()
 		{
-
 			$PasantesTitulados=DB::table('Pasante')
 								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
-								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 								->count();
 			$PasantesTituladosMujeres=DB::table('Pasante')
 								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
-								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 								->where('Genero','F')
 								->count();
 			$PasantesTituladosHombres=DB::table('Pasante')
 								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
-								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 								->where('Genero','M')
 								->count();
 			$Profesores=DB::table('Profesor')
@@ -46,13 +45,13 @@
 
 			$PasantesAño=DB::table('Pasante')
 								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
-								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 								->where('Anio_Titulacion',$año)
 								->count();
 			if($mes<7){
 				$PasantesSemestre=DB::table('Pasante')
 								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
-								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 								->where('Anio_Titulacion',$año)
 								->where('Semestre_Titulacion','B')
 								->count();
@@ -60,7 +59,7 @@
 			else{
 				$PasantesSemestre=DB::table('Pasante')
 								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
-								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 								->where('Anio_Titulacion',$año)
 								->where('Semestre_Titulacion','A')
 								->count();
@@ -77,8 +76,8 @@
 
 		public function altaProfesores()
 		{
-			$Profes= DB::table('Usuario')
-	            ->join('Profesor', 'Usuario.id_Usuario', '=', 'Profesor.Usuario_id_Usuario')
+			$Profes= DB::table('users')
+	            ->join('Profesor', 'users.id', '=', 'Profesor.Usuario_id_Usuario')
 	            ->where('Rol','Profesor')
 	            ->get();
 	        Log::info("Logging an array: " . print_r($Profes, true));
@@ -110,9 +109,9 @@
 			}
 			else
 			{
-				$pro=DB::table('Profesor')->where('Cargo','Director')->pluck('Cargo');
-				$pro2=DB::table('Profesor')->where('Cargo','Subdirector')->pluck('Cargo');
-				if(count($pro)>0 or count($pro2)>0)
+				
+				$pro=DB::table('Profesor')->where('Cargo',$cargo)->pluck('Cargo');
+				if(count($pro)>0)
 				{
 					$error = 'Ya hay un profesor con ese cargo.';
 					return Redirect::to('gestionProfesores')
@@ -121,16 +120,9 @@
 				}
 				else
 				{
-					$id = DB::table('Usuario')->insertGetId(array('Nombre' => $nombre, 'ApellidoP' => $ap, 'ApellidoM' => $am, 'Genero' => $genero,'Correo' => $mail,'Rol' => 'Profesor'));
+					$id = DB::table('users')->insertGetId(array('Nombre' => $nombre, 'ApellidoP' => $ap, 'ApellidoM' => $am, 'Genero' => $genero,'email' => $mail,'Rol' => 'Profesor'));
 					DB::table('Profesor')->insert(array('Cedula' => $cedula, 'Cargo' => $cargo, 'Usuario_id_Usuario' => $id));
 					$correcto = "El profesor ha sido agregado correctamente";
-			$data='';
-					Mail::send('emails.auth.reminder', $data, function($message)
-	{
-	  $message->to('h_cosmo@hotmail.com', 'Philip Brown')
-	          ->subject('Welcome to Cribbb!');
-	});
-
 
 	           return Redirect::to('gestionProfesores')
 						->with('correcto',$correcto);
@@ -153,9 +145,9 @@
 
 			$idUser = DB::table('Profesor')->where('Cedula',$cedula)->pluck('Usuario_id_Usuario');
 			
-				DB::table('Usuario')
-	            ->where('id_Usuario',$idUser)
-	            ->update(array('Nombre' => $nombre, 'ApellidoP' => $ap, 'ApellidoM' => $am, 'Genero' => $genero,'Correo' => $mail,'Rol' => 'Profesor'));
+				DB::table('users')
+	            ->where('id',$idUser)
+	            ->update(array('Nombre' => $nombre, 'ApellidoP' => $ap, 'ApellidoM' => $am, 'Genero' => $genero,'email' => $mail,'Rol' => 'Profesor'));
 			
 
 				DB::table('Profesor')
@@ -173,8 +165,8 @@
 		public function altatt()
 		{
 
-			$Profes= DB::table('Usuario')
-	            ->join('Profesor', 'Usuario.id_Usuario', '=', 'Profesor.Usuario_id_Usuario')
+			$Profes= DB::table('users')
+	            ->join('Profesor', 'users.id', '=', 'Profesor.Usuario_id_Usuario')
 	            ->where('Rol','Profesor')
 	            ->get();
 	       
@@ -196,16 +188,16 @@
 	        	Log::info("Trabajo terminal " . print_r($item->Num_TT, true));
 
 	        	$pasantes=DB::table('Pasante')
-	        				->join('Usuario','Usuario.id_Usuario','=','Pasante.Usuario_id_Usuario')
+	        				->join('users','users.id','=','Pasante.Usuario_id_Usuario')
 	        				->where('TT_Num_TT','=',$item->Num_TT)
 	        				->select('Nombre','ApellidoP','ApellidoM')->get();
 	        	$Directores=DB::table('Jurado')
 	        						->join('Profesor','Profesor.Cedula','=','Jurado.Profesor_Cedula')
-	        						->join('Usuario', 'Usuario.id_Usuario', '=', 'Profesor.Usuario_id_Usuario')
+	        						->join('users', 'users.id', '=', 'Profesor.Usuario_id_Usuario')
 	        						->where('TT_Num_TT','=',$item->Num_TT)->where('Participacion','Director')
 	        						->select('Nombre','ApellidoP','ApellidoM')->get();
 	        	$Sinodales=DB::table('Jurado')->join('Profesor','Profesor.Cedula','=','Jurado.Profesor_Cedula')
-	        						->join('Usuario', 'Usuario.id_Usuario', '=', 'Profesor.Usuario_id_Usuario')
+	        						->join('users', 'users.id', '=', 'Profesor.Usuario_id_Usuario')
 	        						->where('TT_Num_TT','=',$item->Num_TT)->where('Participacion','Sinodal')
 	        						->select('Nombre','ApellidoP','ApellidoM')->get();Log::info("Putos : " . print_r($pasantes, true));
 	        	$trabajo = new TrabajoTerminal();
@@ -309,8 +301,8 @@
 
 		public function gestionPasantes()
 		{
-			$Pasantes= DB::table('Usuario')
-	            ->join('Pasante', 'Usuario.id_Usuario', '=', 'Pasante.Usuario_id_Usuario')
+			$Pasantes= DB::table('users')
+	            ->join('Pasante', 'users.id', '=', 'Pasante.Usuario_id_Usuario')
 	            ->join('Generacion','Pasante.Generacion_id_Generacion','=','Generacion.id_Generacion')
 	            ->where('Rol','Alumno')
 	            ->get();
@@ -332,8 +324,8 @@
 
 			$idUser = DB::table('Pasante')->where('Boleta',$boleta)->pluck('Usuario_id_Usuario');
 			
-				DB::table('Usuario')
-	            ->where('id_Usuario',$idUser)
+				DB::table('users')
+	            ->where('id',$idUser)
 	            ->update(array('Nombre' => $nombre, 'ApellidoP' => $ap, 'ApellidoM' => $am, 'Genero' => $genero,'Correo' => $mail,'Rol' => 'Alumno'));
 			
 
@@ -405,7 +397,7 @@
 			$Protestas= DB::table('Protesta')
 						->join('Historial_Protesta','Protesta.id_Protesta','=','Historial_Protesta.Protesta_id_Protesta')
 						->join('Pasante','Pasante.Boleta','=','Historial_Protesta.Pasante_Boleta')
-						->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+						->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 						->orderBy('Fecha', 'desc')
 	            		->get();
 
@@ -453,7 +445,7 @@
 			$Protestas= DB::table('Protesta')
 						->join('Historial_Protesta','Protesta.id_Protesta','=','Historial_Protesta.Protesta_id_Protesta')
 						->join('Pasante','Pasante.Boleta','=','Historial_Protesta.Pasante_Boleta')
-						->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+						->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 						->orderBy('Fecha', 'desc')
 	            		->get();
 	       
@@ -478,7 +470,7 @@
 			$Hombres=DB::table('Pasante')
 						->select('Generacion_id_Generacion as Generacion',DB::raw('count(*) as alumnos'))
 						->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
-						->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+						->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 						->where('Genero','M')
 						->groupBy('Generacion_id_Generacion')
 						->orderBy('Generacion_id_Generacion','asc')
@@ -490,7 +482,7 @@
 	        $Mujeres=DB::table('Pasante')
 						->select('Generacion_id_Generacion as Generacion',DB::raw('count(*) as alumnos'))
 						->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
-						->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+						->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 						->where('Genero','F')
 						->groupBy('Generacion_id_Generacion')
 						->orderBy('Generacion_id_Generacion','asc')
@@ -501,7 +493,7 @@
 	        $Pasantes=DB::table('Pasante')
 	        			->select('Generacion_id_Generacion as Generacion',DB::raw('count(*) as alumnos'))
 						->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
-						->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+						->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 						->groupBy('Generacion_id_Generacion')
 						->orderBy('Generacion_id_Generacion','asc')
 						->get();
@@ -509,7 +501,7 @@
 			$PasantesTitulados=DB::table('Pasante')
 			        			->select('Anio_Titulacion as anio',DB::raw('count(*) as alumnos'))
 								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
-								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 								->groupBy('Anio_Titulacion')
 								->orderBy('Anio_Titulacion','desc')
 								->get();
@@ -520,7 +512,7 @@
 			$PasantesTituladosMujeres=DB::table('Pasante')
 			        			->select('Anio_Titulacion as anio',DB::raw('count(*) as alumnos'))
 								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
-								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 								->where('Genero','F')
 								->groupBy('Anio_Titulacion')
 								->orderBy('Anio_Titulacion','desc')
@@ -531,7 +523,7 @@
 			$PasantesTituladosHombres=DB::table('Pasante')
 			        			->select('Anio_Titulacion as anio',DB::raw('count(*) as alumnos'))
 								->join('Acta','Pasante.Acta_Folio','=','Acta.Folio')
-								->join('Usuario','Pasante.Usuario_id_Usuario','=','Usuario.id_Usuario')
+								->join('users','Pasante.Usuario_id_Usuario','=','users.id')
 								->where('Genero','M')
 								->groupBy('Anio_Titulacion')
 								->orderBy('Anio_Titulacion','desc')
@@ -598,7 +590,7 @@
 					    ->withInput();
 			}
 			
-			$id = DB::table('Usuario')->insertGetId(array('Rol' => 'Alumno'));
+			$id = DB::table('users')->insertGetId(array('Rol' => 'Alumno'));
 			DB::table('Pasante')->insert(array('Boleta' => $data,'TT_Num_TT' => $tt,'Usuario_id_Usuario' => $id));
 		}
 

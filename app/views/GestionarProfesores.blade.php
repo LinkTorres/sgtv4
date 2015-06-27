@@ -370,7 +370,7 @@
                                     <td>{{ $item->Nombre }}</td>
                                     <td>{{ $item->ApellidoP }} {{ $item->ApellidoM }}</td>
                                     <td>{{ $item->Cargo }}</td>
-                                    <td>{{ $item->Correo }}</td>
+                                    <td>{{ $item->email }}</td>
                                     <td>{{ $item->Genero }}</td>
                                    
                                     <td>
@@ -489,7 +489,7 @@
 														</div>
 														<div class="form-group">
 															<label  for="form-field-1"> E-mail </label>
-														{{ Form::text('mail',$item->Correo, array('placeholder' => 'E-mail','class' => 'form-control')); }}
+														{{ Form::text('mail',$item->email, array('placeholder' => 'E-mail','class' => 'form-control')); }}
                                                       	</div>
 														
 													

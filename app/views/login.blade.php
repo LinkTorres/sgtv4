@@ -13,7 +13,7 @@
 
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-    
+    <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" />
     <!-- LANCENG CSS -->
     {{ HTML::style('css/style.css'); }}
     {{ HTML::style('css/style-responsive.css'); }}

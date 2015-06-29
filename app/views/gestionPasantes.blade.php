@@ -11,7 +11,7 @@
 
 							<!-- BOOTSTRAP -->
 						    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-						    
+						    <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" />
 						    <!-- LANCENG CSS -->
 						    {{ HTML::style('css/style.css'); }}
 						    {{ HTML::style('css/style-responsive.css'); }}
@@ -282,7 +282,7 @@
 
 													<div id="basic-form2" class="collapse in">
 									<div class="table-responsive">
-									<table id="test" data-sortable class="table">
+									<table id="profesores"  class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
 											<th>Boleta</th>
@@ -518,8 +518,26 @@
 						    {{ HTML::script('third/wizard/scripts.js'); }}
 
 						    
+    <script src="http://www.bestyoumexico.com/media/js/panel_admin/jquery.dataTables.min.js"></script>
+    <script src="http://www.bestyoumexico.com/media/js/panel_admin/dataTables.bootstrap.min.js"></script>
 						    <!-- LANCENG TEMPLATE JAVASCRIPT -->
 						    {{ HTML::script('js/lanceng.js'); }}
+ <script>
+						$("#profesores").DataTable(
 
+	{
+		
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ usuarios por página",
+            "sSearch": "Buscar: ",
+            "zeroRecords": "Nothing found - sorry",
+            "info": "Pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(filtered from _MAX_ total records)"
+        }
+
+        
+    });
+					</script>
 							</body>
 						</html>

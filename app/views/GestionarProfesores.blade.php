@@ -578,8 +578,8 @@
     
     <!-- Morris js -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="http://www.bestyoumexico.com/media/js/panel_admin/dataTables.bootstrap.min.js"></script>
     <script src="http://www.bestyoumexico.com/media/js/panel_admin/jquery.dataTables.min.js"></script>
+    <script src="http://www.bestyoumexico.com/media/js/panel_admin/dataTables.bootstrap.min.js"></script>
     
     {{ HTML::script('third/morris/morris.js'); }}
 
@@ -627,6 +627,8 @@
     {{ HTML::script('third/dataTables/jquery.dataTables.min.js'); }}
     
 
+    <script src="http://www.bestyoumexico.com/media/js/panel_admin/jquery.dataTables.min.js"></script>
+    <script src="http://www.bestyoumexico.com/media/js/panel_admin/dataTables.bootstrap.min.js"></script>
     
     <!-- LANCENG TEMPLATE JAVASCRIPT -->
     {{ HTML::script('js/lanceng.js'); }}

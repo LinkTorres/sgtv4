@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<title>Lanceng - Responsive Admin Template</title>
+	<title>Sistema de Gestión de la Titulación</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -38,7 +38,7 @@
 	<![endif]-->
 	
 	<!-- FAVICON -->
-	<link rel="shortcut icon" href="assets/img/favicon.ico">
+	<link rel="shortcut icon" href="images/logosuperior.ico">
 	</head>
 	
 	

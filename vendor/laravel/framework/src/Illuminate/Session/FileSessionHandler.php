@@ -57,8 +57,10 @@ class FileSessionHandler implements \SessionHandlerInterface {
 		{
 			return $this->files->get($path);
 		}
-
-		return '';
+		else
+		{
+			return '';
+		}
 	}
 
 	/**
@@ -66,7 +68,7 @@ class FileSessionHandler implements \SessionHandlerInterface {
 	 */
 	public function write($sessionId, $data)
 	{
-		$this->files->put($this->path.'/'.$sessionId, $data, true);
+		$this->files->put($this->path.'/'.$sessionId, $data);
 	}
 
 	/**

@@ -41,7 +41,7 @@ class ArrayStore extends TaggableStore implements StoreInterface {
 	 *
 	 * @param  string  $key
 	 * @param  mixed   $value
-	 * @return int
+	 * @return void
 	 */
 	public function increment($key, $value = 1)
 	{
@@ -55,11 +55,13 @@ class ArrayStore extends TaggableStore implements StoreInterface {
 	 *
 	 * @param  string  $key
 	 * @param  mixed   $value
-	 * @return int
+	 * @return void
 	 */
 	public function decrement($key, $value = 1)
 	{
-		return $this->increment($key, $value * -1);
+		$this->storage[$key] = $this->storage[$key] - $value;
+
+		return $this->storage[$key];
 	}
 
 	/**

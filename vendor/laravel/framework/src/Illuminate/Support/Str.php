@@ -1,32 +1,13 @@
 <?php namespace Illuminate\Support;
 
-use Patchwork\Utf8;
-use Illuminate\Support\Traits\MacroableTrait;
-
 class Str {
 
-	use MacroableTrait;
-
 	/**
-	 * The cache of snake-cased words.
+	 * The registered string macros.
 	 *
 	 * @var array
 	 */
-	protected static $snakeCache = [];
-
-	/**
-	 * The cache of camel-cased words.
-	 *
-	 * @var array
-	 */
-	protected static $camelCache = [];
-
-	/**
-	 * The cache of studly-cased words.
-	 *
-	 * @var array
-	 */
-	protected static $studlyCache = [];
+	protected static $macros = array();
 
 	/**
 	 * Transliterate a UTF-8 value to ASCII.
@@ -36,7 +17,7 @@ class Str {
 	 */
 	public static function ascii($value)
 	{
-		return Utf8::toAscii($value);
+		return \Patchwork\Utf8::toAscii($value);
 	}
 
 	/**
@@ -47,12 +28,7 @@ class Str {
 	 */
 	public static function camel($value)
 	{
-		if (isset(static::$camelCache[$value]))
-		{
-			return static::$camelCache[$value];
-		}
-
-		return static::$camelCache[$value] = lcfirst(static::studly($value));
+		return lcfirst(static::studly($value));
 	}
 
 	/**
@@ -75,15 +51,15 @@ class Str {
 	/**
 	 * Determine if a given string ends with a given substring.
 	 *
-	 * @param  string  $haystack
-	 * @param  string|array  $needles
+	 * @param string  $haystack
+	 * @param string|array  $needles
 	 * @return bool
 	 */
 	public static function endsWith($haystack, $needles)
 	{
 		foreach ((array) $needles as $needle)
 		{
-			if ((string) $needle === substr($haystack, -strlen($needle))) return true;
+			if ($needle == substr($haystack, -strlen($needle))) return true;
 		}
 
 		return false;
@@ -173,7 +149,9 @@ class Str {
 	{
 		preg_match('/^\s*+(?:\S++\s*+){1,'.$words.'}/u', $value, $matches);
 
-		if ( ! isset($matches[0]) || strlen($value) === strlen($matches[0])) return $value;
+		if ( ! isset($matches[0])) return $value;
+
+		if (strlen($value) == strlen($matches[0])) return $value;
 
 		return rtrim($matches[0]).$end;
 	}
@@ -194,7 +172,7 @@ class Str {
 	 * Get the plural form of an English word.
 	 *
 	 * @param  string  $value
-	 * @param  int     $count
+	 * @param  int  $count
 	 * @return string
 	 */
 	public static function plural($value, $count = 2)
@@ -205,7 +183,7 @@ class Str {
 	/**
 	 * Generate a more truly "random" alpha-numeric string.
 	 *
-	 * @param  int  $length
+	 * @param  int     $length
 	 * @return string
 	 *
 	 * @throws \RuntimeException
@@ -232,14 +210,14 @@ class Str {
 	 *
 	 * Should not be considered sufficient for cryptography, etc.
 	 *
-	 * @param  int  $length
+	 * @param  int     $length
 	 * @return string
 	 */
 	public static function quickRandom($length = 16)
 	{
 		$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-		return substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
+		return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
 	}
 
 	/**
@@ -309,21 +287,9 @@ class Str {
 	 */
 	public static function snake($value, $delimiter = '_')
 	{
-		$key = $value.$delimiter;
+		$replace = '$1'.$delimiter.'$2';
 
-		if (isset(static::$snakeCache[$key]))
-		{
-			return static::$snakeCache[$key];
-		}
-
-		if ( ! ctype_lower($value))
-		{
-			$replace = '$1'.$delimiter.'$2';
-
-			$value = strtolower(preg_replace('/(.)([A-Z])/', $replace, $value));
-		}
-
-		return static::$snakeCache[$key] = $value;
+		return ctype_lower($value) ? $value : strtolower(preg_replace('/(.)([A-Z])/', $replace, $value));
 	}
 
 	/**
@@ -351,16 +317,40 @@ class Str {
 	 */
 	public static function studly($value)
 	{
-		$key = $value;
-
-		if (isset(static::$studlyCache[$key]))
-		{
-			return static::$studlyCache[$key];
-		}
-
 		$value = ucwords(str_replace(array('-', '_'), ' ', $value));
 
-		return static::$studlyCache[$key] = str_replace(' ', '', $value);
+		return str_replace(' ', '', $value);
+	}
+
+	/**
+	 * Register a custom string macro.
+	 *
+	 * @param  string    $name
+	 * @param  callable  $macro
+	 * @return void
+	 */
+	public static function macro($name, $macro)
+	{
+		static::$macros[$name] = $macro;
+	}
+
+	/**
+	 * Dynamically handle calls to the string class.
+	 *
+	 * @param  string  $method
+	 * @param  array   $parameters
+	 * @return mixed
+	 *
+	 * @throws \BadMethodCallException
+	 */
+	public static function __callStatic($method, $parameters)
+	{
+		if (isset(static::$macros[$method]))
+		{
+			return call_user_func_array(static::$macros[$method], $parameters);
+		}
+
+		throw new \BadMethodCallException("Method {$method} does not exist.");
 	}
 
 }

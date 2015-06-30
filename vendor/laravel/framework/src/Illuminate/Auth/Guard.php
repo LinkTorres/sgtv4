@@ -83,7 +83,6 @@ class Guard {
 	 *
 	 * @param  \Illuminate\Auth\UserProviderInterface  $provider
 	 * @param  \Illuminate\Session\Store  $session
-	 * @param  \Symfony\Component\HttpFoundation\Request  $request
 	 * @return void
 	 */
 	public function __construct(UserProviderInterface $provider,
@@ -166,14 +165,7 @@ class Guard {
 	{
 		if ($this->loggedOut) return;
 
-		$id = $this->session->get($this->getName(), $this->getRecallerId());
-
-		if (is_null($id) && $this->user())
-		{
-			$id = $this->user()->getAuthIdentifier();
-		}
-
-		return $id;
+		return $this->session->get($this->getName()) ?: $this->getRecallerId();
 	}
 
 	/**
@@ -575,9 +567,7 @@ class Guard {
 	 */
 	protected function createRememberTokenIfDoesntExist(UserInterface $user)
 	{
-		$rememberToken = $user->getRememberToken();
-
-		if (empty($rememberToken))
+		if (is_null($user->getRememberToken()))
 		{
 			$this->refreshRememberToken($user);
 		}
@@ -625,7 +615,6 @@ class Guard {
 	 * Set the event dispatcher instance.
 	 *
 	 * @param  \Illuminate\Events\Dispatcher
-	 * @return void
 	 */
 	public function setDispatcher(Dispatcher $events)
 	{
@@ -700,7 +689,7 @@ class Guard {
 	 * Set the current request instance.
 	 *
 	 * @param  \Symfony\Component\HttpFoundation\Request
-	 * @return $this
+	 * @return \Illuminate\Auth\Guard
 	 */
 	public function setRequest(Request $request)
 	{

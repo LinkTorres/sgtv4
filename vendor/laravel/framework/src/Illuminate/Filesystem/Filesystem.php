@@ -3,6 +3,8 @@
 use FilesystemIterator;
 use Symfony\Component\Finder\Finder;
 
+class FileNotFoundException extends \Exception {}
+
 class Filesystem {
 
 	/**
@@ -62,12 +64,11 @@ class Filesystem {
 	 *
 	 * @param  string  $path
 	 * @param  string  $contents
-	 * @param  bool  $lock
 	 * @return int
 	 */
-	public function put($path, $contents, $lock = false)
+	public function put($path, $contents)
 	{
-		return file_put_contents($path, $contents, $lock ? LOCK_EX : 0);
+		return file_put_contents($path, $contents);
 	}
 
 	/**
@@ -83,8 +84,10 @@ class Filesystem {
 		{
 			return $this->put($path, $data.$this->get($path));
 		}
-
-		return $this->put($path, $data);
+		else
+		{
+			return $this->put($path, $data);
+		}
 	}
 
 	/**
@@ -138,17 +141,6 @@ class Filesystem {
 	public function copy($path, $target)
 	{
 		return copy($path, $target);
-	}
-
-	/**
-	 * Extract the file name from a file path.
-	 *
-	 * @param  string  $path
-	 * @return string
-	 */
-	public function name($path)
-	{
-		return pathinfo($path, PATHINFO_FILENAME);
 	}
 
 	/**
@@ -299,14 +291,16 @@ class Filesystem {
 	 * @param  bool    $force
 	 * @return bool
 	 */
-	public function makeDirectory($path, $mode = 0755, $recursive = false, $force = false)
+	public function makeDirectory($path, $mode = 0777, $recursive = false, $force = false)
 	{
 		if ($force)
 		{
 			return @mkdir($path, $mode, $recursive);
 		}
-
-		return mkdir($path, $mode, $recursive);
+		else
+		{
+			return mkdir($path, $mode, $recursive);
+		}
 	}
 
 	/**
@@ -377,7 +371,7 @@ class Filesystem {
 		foreach ($items as $item)
 		{
 			// If the item is a directory, we can just recurse into the function and
-			// delete that sub-directory otherwise we'll just delete the file and
+			// delete that sub-director, otherwise we'll just delete the file and
 			// keep iterating through each file until the directory is cleaned.
 			if ($item->isDir())
 			{

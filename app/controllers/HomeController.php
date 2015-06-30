@@ -72,6 +72,7 @@
 				->with('PasantesAño',$PasantesAño)
 				->with('PasantesSemestre',$PasantesSemestre)
 				->with('Profesores',$Profesores);
+
 		}
 
 		public function altaProfesores()
@@ -87,6 +88,7 @@
 
 			return View::make('GestionarProfesores',$Profes)
 			->with('Profes',$Profes);
+
 		}
 
 		public function postaltaProfesores()
@@ -148,7 +150,15 @@
 				DB::table('users')
 	            ->where('id',$idUser)
 	            ->update(array('Nombre' => $nombre, 'ApellidoP' => $ap, 'ApellidoM' => $am, 'Genero' => $genero,'email' => $mail,'Rol' => 'Profesor'));
-			
+				
+				$pro=DB::table('Profesor')->where('Cargo',$cargo)->pluck('Cargo');
+				if(count($pro)>0)
+				{
+					$error = 'Ya hay un profesor con ese cargo.';
+					return Redirect::to('gestionProfesores')
+						->with('error',$error)
+					    ->withInput();
+				}
 
 				DB::table('Profesor')
 	            ->where('Cedula',$cedula)
@@ -199,7 +209,7 @@
 	        	$Sinodales=DB::table('Jurado')->join('Profesor','Profesor.Cedula','=','Jurado.Profesor_Cedula')
 	        						->join('users', 'users.id', '=', 'Profesor.Usuario_id_Usuario')
 	        						->where('TT_Num_TT','=',$item->Num_TT)->where('Participacion','Sinodal')
-	        						->select('Nombre','ApellidoP','ApellidoM')->get();Log::info("Putos : " . print_r($pasantes, true));
+	        						->select('Nombre','ApellidoP','ApellidoM')->get();
 	        	$trabajo = new TrabajoTerminal();
 	        	$trabajo->numTT = $item->Num_TT;
 	        	$trabajo->alumnos = $pasantes;
@@ -240,12 +250,9 @@
 			$asistencia2=e(Input::get('asis2')); 
 			$asistencia3=e(Input::get('asis3')); 
 
-			Log::info("la pendejada vale" . print_r($numtt, true));
 			$pro = DB::table('TT')->where('Num_TT',$numtt)->pluck('Nombre_TT');
-			Log::info("pendejada 1: " . print_r($pro, true));
 			if(count($pro))
 			{
-				Log::info("pendejada 2: " . print_r($pro, true));
 				$error = 'Ya has registrado ese TT';
 					return Redirect::to('gestionarTT')
 							->with('error',$error)
@@ -253,7 +260,7 @@
 			}
 			else
 			{	
-				Log::info("pendejada 3: ");
+				
 				DB::table('TT')->insert(array('Num_TT' => $numtt, 'Nombre_TT' => $nombrett));
 				Auxilio::verificarPasante($pasante1,"1",$numtt);
 				if(strlen($pasante2)) Auxilio::verificarPasante($pasante2,"2",$numtt);
@@ -268,6 +275,10 @@
 				DB::table('Jurado')->insert(array('TT_Num_TT' => $numtt, 'Profesor_Cedula' => $sinodal2,'Participacion' => 'Sinodal'));
 				DB::table('Jurado')->insert(array('TT_Num_TT' => $numtt, 'Profesor_Cedula' => $sinodal3,'Participacion' => 'Sinodal'));
 			}
+			$correcto = "El Trabajo Terminal ha sido registardo correctamente";
+
+	           return Redirect::to('gestionartt')
+						->with('correcto',$correcto);
 
 		}
 
@@ -296,7 +307,10 @@
 			DB::table('TT')
             	->where('Num_TT','=',$numTT)
             	->update(array('Registro_TT' => $registro,'Registro_Pendiente' => 0,'Registro_Completado' => 1));
-			
+			$correcto = "El registro ha sido guardado correctamente";
+
+	           return Redirect::to('registrott')
+						->with('correcto',$correcto);
 		}
 
 		public function gestionPasantes()
@@ -339,6 +353,7 @@
 						->with('correcto',$correcto);
 			
 		}
+
 
 
 		public function gestionProtestas()

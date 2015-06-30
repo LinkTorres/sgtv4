@@ -441,7 +441,7 @@
 							<table id="profesores"  class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>
-									<th width="100px">Editar</th>
+									<!--<th width="100px">Editar</th>-->
 									<th width="120px">Num. TT</th>
                                     <th width="200px">Director 1</th>
                                     <th width="200px">Director 2</th>
@@ -460,10 +460,10 @@
 							<tbody>
 								@foreach($TT as $item)
 								<tr class="odd gradeX">
-                                    <td>
+                                    <!--<td>
                                     	<div class="btn-group btn-group-xs">
-									<a class="md-trigger btn btn-default" data-modal="a" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-edit"></i></a>
-									</div></td>
+									<a class="md-trigger btn btn-default" data-modal="a{{ $item->numTT }}" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-edit"></i></a>
+									</div></td>-->
 								<td>{{ $item->numTT }}</td>
 								@foreach($item->directores as $director)
                                 		<td>{{ $director->Nombre }} {{ $director->ApellidoP }} {{ $director->ApellidoM }}</td>
@@ -485,8 +485,7 @@
 								    <td></td><td></td>
 								@elseif (count($item->alumnos)  === 4)
 								    <td></td>
-								@else
-									<td></td><td></td><td></td><td></td><td></td>
+								
 								@endif
                                 
                                    
@@ -553,6 +552,7 @@
 							</div>
 						</div>
 					</div><!-- End .md-modal -->
+					
 					
 
 					

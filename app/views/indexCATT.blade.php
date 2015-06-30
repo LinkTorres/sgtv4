@@ -38,7 +38,7 @@
 	<![endif]-->
 	
 	<!-- FAVICON -->
-	<link rel="shortcut icon" href="public/images/logosuperior.ico">
+	<link rel="shortcut icon" href="images/logosuperior.ico">
 	</head>
 	
 	
@@ -164,8 +164,6 @@
 								<li class="dropdown">
 									<a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">Admin, <strong>CATT</strong> <i class="fa fa-chevron-down i-xs"></i></a>
 									<ul class="dropdown-menu animated half flipInX">
-										
-										<li class="divider"></li><li><a href="#fakelink">Cambiar Password</a></li>
 										<li><a href="#fakelink"><i class="fa fa-cog"></i> Configuración</a></li>
 										<li><a href="./logout" class="md-trigger" data-modal="logout-modal"> Cerrar Sesión</a></li>
 									</ul>
@@ -196,15 +194,15 @@
 				
 				<!-- Begin info box -->
 				<div class="row">
-					<!-- Orders Info Box -->
-					<div class="col-sm-3 col-xs-12">
+					<!-- Pasantes Info Box -->
+					<div class="col-sm-5 col-xs-12">
 						<!-- Box info -->
 						<div class="box-info">
 							<!-- Icon box -->
 							<div class="icon-box">
 								<span class="fa-stack">
 								  <i class="fa fa-circle fa-stack-2x success"></i>
-								  <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+								  <i class="fa fa-child fa-stack-1x fa-inverse"></i>
 								 </span>
 							</div><!-- End div .icon-box -->
 							<!-- Text box -->
@@ -215,14 +213,14 @@
 						</div><!-- End div .info-box -->
 						
 					</div>
-					<!-- End Orders Info Box -->
-					<div  class="col-sm-6 col-xs-6">
+					<!-- Pasantes HombresInfo Box -->
+					<div  class="col-sm-3 col-xs-6">
 						<div class="box-info">
 							<!-- Icon box -->
 							<div class="icon-box">
 								<span class="fa-stack">
 								  <i class="fa fa-circle fa-stack-2x info"></i>
-								  <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+								  <i class="fa fa-male fa-stack-1x fa-inverse"></i>
 								 </span>
 							</div><!-- End div .icon-box -->
 							<!-- Text box -->
@@ -232,13 +230,15 @@
 							</div><!-- End div .text-box -->
 							<div class="clear"></div>
 						</div><!-- End div .info-box -->
-						
+					</div>
+					<!--Pasantes mujeres-->
+					<div class="col-sm-3 col-xs-6">
 						<div class="box-info">
 							<!-- Icon box -->
 							<div class="icon-box">
 								<span class="fa-stack">
 								  <i class="fa fa-circle fa-stack-2x danger"></i>
-								  <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+								  <i class="fa fa-female fa-stack-1x fa-inverse"></i>
 								 </span>
 							</div><!-- End div .icon-box -->
 							<!-- Text box -->
@@ -249,8 +249,53 @@
 							<div class="clear"></div>
 						</div><!-- End div .info-box -->
 					</div>
+										
+					<!-- Downloads Info Box -->
+					<div class="col-sm-5 col-xs-6">
+						<!-- Box info -->
+						<div class="box-info">
+							<!-- Icon box -->
+							<div class="icon-box">
+								<span class="fa-stack">
+								  <i class="fa fa-circle fa-stack-2x info"></i>
+								  <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+								</span>
+							</div><!-- End div .icon-box -->
+							<!-- Text box -->
+							<div class="text-box">
+								<h3>{{ $PasantesAño }}</h3>
+								<p>Titulados este año</p>
+							</div><!-- End div .text-box -->
+							<div class="clear"></div>
+							
+						</div><!-- End div .info-box -->
+					</div>
+					<!-- End Downloads Info Box -->
+					
+					<!-- Shipping Info Box -->
+					<div class="col-sm-5 col-xs-6">
+						<!-- Box info -->
+						<div class="box-info">
+							<!-- Icon box -->
+							<div class="icon-box">
+								<span class="fa-stack">
+								  <i class="fa fa-circle fa-stack-2x warning"></i>
+								  <i class="fa fa-truck fa-stack-1x fa-inverse"></i>
+								</span>
+							</div><!-- End div .icon-box -->
+							<!-- Text box -->
+							<div class="text-box">
+								<h3>{{ $PasantesSemestre }}</h3>
+								<p>Titulados este semestre</p>
+							</div><!-- End div .text-box -->
+							<div class="clear"></div>
+							<!-- Progress bar -->
+							
+						</div><!-- End div .info-box -->
+					</div>
+					<!-- End Shipping Info Box -->
 					<!-- Visitor Info Box -->
-					<div class="col-sm-3 col-xs-6">
+					<div class="col-sm-2 col-xs-12">
 						<!-- Box info -->
 						<div class="box-info">
 							<!-- Icon box -->
@@ -272,56 +317,6 @@
 						</div><!-- End div .info-box -->
 					</div>
 					<!-- End Visitor Info Box -->
-					
-					
-					
-					
-					<!-- Downloads Info Box -->
-					<div class="col-sm-3 col-xs-6">
-						<!-- Box info -->
-						<div class="box-info">
-							<!-- Icon box -->
-							<div class="icon-box">
-								<span class="fa-stack">
-								  <i class="fa fa-circle fa-stack-2x info"></i>
-								  <i class="fa fa-file-o fa-stack-1x fa-inverse"></i>
-								</span>
-							</div><!-- End div .icon-box -->
-							<!-- Text box -->
-							<div class="text-box">
-								<h3>{{ $PasantesAño }}</h3>
-								<p>Titulados este año</p>
-							</div><!-- End div .text-box -->
-							<div class="clear"></div>
-							
-						</div><!-- End div .info-box -->
-					</div>
-					<!-- End Downloads Info Box -->
-					
-					
-					<!-- Shipping Info Box -->
-					<div class="col-sm-3 col-xs-6">
-						<!-- Box info -->
-						<div class="box-info">
-							<!-- Icon box -->
-							<div class="icon-box">
-								<span class="fa-stack">
-								  <i class="fa fa-circle fa-stack-2x warning"></i>
-								  <i class="fa fa-truck fa-stack-1x fa-inverse"></i>
-								</span>
-							</div><!-- End div .icon-box -->
-							<!-- Text box -->
-							<div class="text-box">
-								<h3>{{ $PasantesSemestre }}</h3>
-								<p>Titulados este semestre</p>
-							</div><!-- End div .text-box -->
-							<div class="clear"></div>
-							<!-- Progress bar -->
-							
-						</div><!-- End div .info-box -->
-					</div>
-					<!-- End Shipping Info Box -->
-					
 				</div>
 				<!-- End of info box -->
 				

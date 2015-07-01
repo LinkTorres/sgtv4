@@ -130,8 +130,6 @@
 						->with('correcto',$correcto);
 				}
 			}
-
-			
 		}
 
 
@@ -152,12 +150,15 @@
 	            ->update(array('Nombre' => $nombre, 'ApellidoP' => $ap, 'ApellidoM' => $am, 'Genero' => $genero,'email' => $mail,'Rol' => 'Profesor'));
 				
 				$pro=DB::table('Profesor')->where('Cargo',$cargo)->pluck('Cargo');
-				if(count($pro)>0)
+				if(!strcmp('Subdirector',$pro) or !strcmp('Director',$pro))
 				{
-					$error = 'Ya hay un profesor con ese cargo.';
-					return Redirect::to('gestionProfesores')
-						->with('error',$error)
-					    ->withInput();
+					if(count($pro)>0)
+					{
+						$error = 'Ya hay un profesor con ese cargo.';
+						return Redirect::to('gestionProfesores')
+							->with('error',$error)
+						    ->withInput();
+					}
 				}
 
 				DB::table('Profesor')
@@ -254,7 +255,7 @@
 			if(count($pro))
 			{
 				$error = 'Ya has registrado ese TT';
-					return Redirect::to('gestionarTT')
+					return Redirect::to('gestionartt')
 							->with('error',$error)
 						    ->withInput();
 			}
@@ -320,6 +321,7 @@
 	            ->join('Generacion','Pasante.Generacion_id_Generacion','=','Generacion.id_Generacion')
 	            ->where('Rol','Alumno')
 	            ->get();
+	        Log::info("Pasantessssssss" . print_r($Pasantes, true));
 			return View::make('gestionPasantes',$Pasantes)
 				->with('Pasantes',$Pasantes);
 

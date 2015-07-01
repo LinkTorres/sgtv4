@@ -286,45 +286,46 @@
 			                            		<div class="alert alert-danger">{{ Session::get('error') }}</div>
 			                                @endif
 											{{ Form::open(array('url' => '/gestionartt')); }}
-											<div class="form-group">
+											<div class=" col-md-12 form-group">
 												<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Número de TT </label>
-												<div class="col-sm-9">
-												{{ Form::text('numtt', '', array('placeholder' => 'Ej. 2014-A038', 'class'=> 'form-control col-xs-10 col-sm-5')); }}
+												<div class="col-sm-4">
+												{{ Form::text('numtt', '', array('placeholder' => 'Ej. 2014-A038', 'class'=> 'form-control ', 'required')); }}
 												</div>
+												
 											</div>
-											<div class="form-group">
+											<div class=" col-md-12 form-group">
 												<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nombre del TT </label>
-												<div class="col-sm-9">
-													{{ Form::text('nombrett', '', array('placeholder' => 'Introduzca el Nombre', 'class'=> 'form-control')); }}
+												<div class="col-sm-6">
+													{{ Form::text('nombrett', '', array('placeholder' => 'Introduzca el Nombre', 'class'=> 'form-control','required')); }}
 												</div>	
+												
 											</div>													
 											<br> <h4>Información de los pasantes</h4>
+
 											<!--Pasante1-->
-											<div class="form-group">
+											<div class=" col-md-12 form-group">
 												<label class="col-sm-3 control-label no-padding-right" for="form-field-8">Pasante 1</label>
-												<div class="col-sm-9">
+												<div class="col-sm-4">
 													<span class="input-icon">
-														{{ Form::text('pasante1', '', array('placeholder' => 'Boleta', 'class'=> 'form-control')); }}
+														{{ Form::text('pasante1', '', array('placeholder' => 'Boleta', 'class'=> 'form-control', 'required')); }}
 													</span>
 												</div>
 											</div>															
 											<!--Pasante2-->
-											<div class="form-group">
+											<div class="col-md-12 form-group">
 												<label class="col-sm-3 control-label no-padding-right" for="form-field-8">Pasante 2</label>
 												
-												<div class="col-sm-9">
+												<div class="col-sm-4">
 													<span class="input-icon">
 														{{ Form::text('pasante2', '', array('placeholder' => 'Boleta', 'class'=> 'form-control')); }}
-														 
-
 													</span>													
 												</div>
 											</div>
 											<!--Pasante3-->
-											<div class="form-group">
+											<div class="col-md-12 form-group">
 												<label class="col-sm-3 control-label no-padding-right" for="form-field-8">Pasante 3</label>
 												
-												<div class="col-sm-9">
+												<div class="col-sm-4">
 													<span class="input-icon">
 														{{ Form::text('pasante3', '', array('placeholder' => 'Boleta', 'class'=> 'form-control')); }}
 														 
@@ -333,10 +334,10 @@
 												</div>
 											</div>
 											<!--Pasante4-->
-											<div class="form-group">
+											<div class="col-md-12 form-group">
 												<label class="col-sm-3 control-label no-padding-right" for="form-field-8">Pasante 4</label>
 												
-												<div class="col-sm-9">
+												<div class="col-sm-4">
 													<span class="input-icon">
 														{{ Form::text('pasante4', '', array('placeholder' => 'Boleta', 'class'=> 'form-control')); }}
 														 
@@ -345,10 +346,10 @@
 												</div>
 											</div>
 											<!--Pasanteo5-->
-											<div class="form-group">
+											<div class="col-md-12 form-group">
 												<label class="col-sm-3 control-label no-padding-right" for="form-field-8">Pasante 5</label>
 												
-												<div class="col-sm-9">
+												<div class="col-sm-4">
 													<span class="input-icon">
 														{{ Form::text('pasante5', '', array('placeholder' => 'Boleta', 'class'=> 'form-control')); }}
 														 
@@ -357,42 +358,43 @@
 												</div>
 											</div>
 											<br> <h4>Información del jurado</h4>
-											<div class="form-group">
-												<label class="col-sm-3 control-label no-padding-right" for="form-field-8">Director 1  </label>
-												<select class="form-control col-xs-10 col-sm-5" name="director1">
+											<div class="col-md-6 form-group">
+												<label class=" col-md-6	 control-label no-padding-right" for="form-field-8">Director 1  </label>
+												<select class="col-md-6 form-control " name="director1" required>
 													@foreach($Profes as $item)
 														<option value="{{ $item->Cedula }}">{{ $item->Nombre }} {{ $item->ApellidoP }} {{ $item->ApellidoM }}</option>
 													@endforeach
 														
 												</select>		
 											</div>			
-											<div class="form-group">
-												<label class="col-sm-3 control-label no-padding-right" for="form-field-8">Director 2  </label>
-												<select class="form-control col-xs-10 col-sm-5" name="director2">
+											<div class="col-md-6 form-group">
+												<label class=" control-label no-padding-right" for="form-field-8">Director 2  </label>
+												<select class="form-control" name="director2" required>
+													<option value="0">Ninguno</option>
 													@foreach($Profes as $item)
 														<option value="{{ $item->Cedula }}">{{ $item->Nombre }} {{ $item->ApellidoP }} {{ $item->ApellidoM }}</option>
 													@endforeach
-													<option value="0">Ninguno</option>
+													
 												</select>	
 											</div>	
 
 											<h3><br><br>Sinodales</h3>
-											<div class="form-group">
-												<label class="col-sm-3 control-label no-padding-right" for="form-field-8">Sinodal 1  </label>
-												<select class="form-control col-xs-10 col-sm-5" name="sinodal1">
+											<div class="col-md-4 form-group">
+												<label class=" control-label no-padding-right" for="form-field-8">Sinodal 1  </label>
+												<select class="form-control" name="sinodal1" required>
 													@foreach($Profes as $item)
 														<option value="{{ $item->Cedula }}">{{ $item->Nombre }} {{ $item->ApellidoP }} {{ $item->ApellidoM }}</option>
 													@endforeach
 												</select>	
 												<label> 
-													<input name="asis" class="ace ace-switch ace-switch-6" type="checkbox" />
+													<input name="asis" type="checkbox" />
 													<span class="lbl"></span>Asistencia
 												</label>
 											</div>
 											
-											<div class="form-group">
-												<label class="col-sm-3 control-label no-padding-right" for="form-field-8">Sinodal 2  </label>
-												<select class="form-control col-xs-10 col-sm-5" name="sinodal2">
+											<div class="col-md-4 form-group">
+												<label class="control-label no-padding-right " for="form-field-8">Sinodal 2  </label>
+												<select class="form-control" name="sinodal2" required>
 													@foreach($Profes as $item)
 														<option value="{{ $item->Cedula }}">{{ $item->Nombre }} {{ $item->ApellidoP }} {{ $item->ApellidoM }}</option>
 													@endforeach
@@ -402,9 +404,9 @@
 													<span class="lbl"></span>Asistencia
 												</label>
 											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label no-padding-right" for="form-field-8">Sinodal 3  </label>
-												<select class="form-control col-xs-10 col-sm-5" name="sinodal3">
+											<div class="col-md-4 form-group">
+												<label class="control-label no-padding-right" for="form-field-8">Sinodal 3  </label>
+												<select class="form-control" name="sinodal3" required>
 													@foreach($Profes as $item)
 														<option value="{{ $item->Cedula }}">{{ $item->Nombre }} {{ $item->ApellidoP }} {{ $item->ApellidoM }}</option>
 													@endforeach

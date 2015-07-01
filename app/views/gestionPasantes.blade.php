@@ -282,7 +282,7 @@
 
 													<div id="basic-form2" class="collapse in">
 									<div class="table-responsive">
-									<table id="profesores"  class="table table-striped table-bordered table-hover">
+									<table id="profesores2"  class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
 											<th>Boleta</th>
@@ -523,16 +523,16 @@
 						    <!-- LANCENG TEMPLATE JAVASCRIPT -->
 						    {{ HTML::script('js/lanceng.js'); }}
  <script>
-						$("#profesores").DataTable(
+						$("#profesores2").DataTable(
 
 	{
 		
         "language": {
             "lengthMenu": "Mostrar _MENU_ usuarios por página",
             "sSearch": "Buscar: ",
-            "zeroRecords": "Nothing found - sorry",
+            "zeroRecords": "No encontrado",
             "info": "Pagina _PAGE_ de _PAGES_",
-            "infoEmpty": "No records available",
+            "infoEmpty": "No informacion disponible",
             "infoFiltered": "(filtered from _MAX_ total records)"
         }
 

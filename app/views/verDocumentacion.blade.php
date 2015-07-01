@@ -85,7 +85,7 @@
 					<div id="sidebar-menu">
 						<ul>
 							<li><a href="./verJurado"><i class="fa fa-users"></i> Ver Jurado</a></li>
-							<li><a href="./verDocumentacion"><i class="fa fa-university"></i> Ver Documentación</a></li>
+							<li><a href="./gestionartt"><i class="fa fa-university"></i> Ver Documentación</a></li>
 							<li><a href="#./RegistrosTT"><i class="fa fa-list"></i> Imprimir Solicitud</a></li>
 						</ul>
 						<div class="clear"></div>
@@ -257,7 +257,7 @@
 				
 				
 				<div class="box-info">
-					<h2><i class="fa fa-cogs"></i><strong> Jurado</strong></h2>
+					<h2><i class="fa fa-cogs"></i><strong>Proceso de Titulacion</strong></h2>
 							<!-- Additional button -->
 							<div class="additional-btn">
 								<a class="additional-icon"  data-toggle="collapse" data-target="#basic-form2"><i class="fa fa-chevron-down"></i></a>
@@ -265,14 +265,22 @@
 
 							<!-- Basic form body -->
 							<div id="basic-form2" class="collapse in">
-							<p><h2>Trabajo terminal:<strong> {{ $tt }}</strong></h2>
-								<h4><strong>Directores: </strong>  <br><br> @foreach($Directores as $director)
-                                		{{ $director->Nombre }} {{ $director->ApellidoP }} {{ $director->ApellidoM }}<br>
-                                @endforeach</h4>
-                                <h4><strong>Sinodales: </strong>  <br><br> @foreach($Sinodales as $director)
-                                		{{ $director->Nombre }} {{ $director->ApellidoP }} {{ $director->ApellidoM }}<br>
-                                @endforeach</h4>
-							</p>
+							<iframe src="http://www.isc.escom.ipn.mx/docs/catt/titulacion2014.pdf" width='100%' height="600px"></iframe>
+
+				</div><!-- End div #basic-form -->
+
+				</div><!-- End div .box-info -->
+
+				<div class="box-info">
+					<h2><i class="fa fa-cogs"></i><strong>Documentos</strong></h2>
+							<!-- Additional button -->
+							<div class="additional-btn">
+								<a class="additional-icon"  data-toggle="collapse" data-target="#basic-form3"><i class="fa fa-chevron-down"></i></a>
+							</div>
+
+							<!-- Basic form body -->
+							<div id="basic-form3" class="collapse in">
+							<iframe src="http://www.isc.escom.ipn.mx/docs/catt/requisitosTomaProtesta2014.pdf" width='100%' height="600px"></iframe>
 
 				</div><!-- End div #basic-form -->
 

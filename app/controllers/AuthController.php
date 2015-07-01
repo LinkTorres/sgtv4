@@ -32,6 +32,9 @@ class AuthController extends BaseController {
 	public function postLogin()
 	{
 		// Guardamos en un arreglo los datos del usuario.
+
+		Session::put('username',Input::get('username'));
+
 		$userdata = array(
             'username' => Input::get('username'),
             'password'=> Input::get('password')

@@ -300,10 +300,12 @@
 												<option value="{{ $item->id_Protesta }}">{{ $item->Fecha }} {{ $item->Hora_Inicio }}  </option>
 												@endforeach
 											</select>
+
 								</div>
 														
-								<div class="clearfix form-actions ">
-															
+								<div class="clearfix form-actions col-md-12"><br>
+									<input name="asis" type="checkbox" required>Documentos Completos</input>
+								<br>							<br>
 								{{ Form::submit('Registrar', array('class' => 'btn btn-info')); }}
 								</div>
 							{{ Form::close() }}
